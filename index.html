@@ -3,41 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roomie - User Agreement</title>
+    <title>Roomie - Пользовательское соглашение</title>
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cline x1='10' y1='9' x2='8' y2='9'%3E%3C/line%3E%3C/svg%3E">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+JP:wght@400;700&family=Noto+Sans+KR:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        
-        /* Font overrides for specific scripts */
-        :lang(zh), :lang(zh-HK) { font-family: 'Noto Sans SC', sans-serif; }
-        :lang(ja) { font-family: 'Noto Sans JP', sans-serif; }
-        :lang(ko) { font-family: 'Noto Sans KR', sans-serif; }
-        :lang(ar) { font-family: 'Noto Sans Arabic', sans-serif; }
+        body { font-family: 'Inter', sans-serif; }
 
         /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* Language Switcher */
-        .lang-switcher {
+        /* Google Translate Customization */
+        .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
             transition: all 0.3s ease;
@@ -45,70 +29,77 @@
 
         /* Desktop: Top Right */
         @media (min-width: 1024px) {
-            .lang-switcher {
-                top: 1.5rem;
-                right: 2rem;
-            }
-            /* Adjust for RTL */
-            html[dir="rtl"] .lang-switcher {
-                right: auto;
-                left: 2rem;
-            }
+            .lang-switcher-wrapper { top: 1.5rem; right: 2rem; }
         }
 
         /* Mobile: Bottom Right */
         @media (max-width: 1023px) {
-            .lang-switcher {
-                bottom: 1.5rem;
-                right: 1.5rem;
-                top: auto;
-            }
-            html[dir="rtl"] .lang-switcher {
-                right: auto;
-                left: 1.5rem;
-            }
+            .lang-switcher-wrapper { bottom: 1.5rem; right: 1.5rem; top: auto; }
         }
 
-        .fade-in {
-            animation: fadeIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* Hide Google Bar Top Frame */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
 
-        /* Active TOC link */
-        .toc-active {
-            color: #4f46e5 !important;
-            border-left-color: #4f46e5 !important; /* LTR default */
-            background-color: #eff6ff;
-            font-weight: 600;
+        /* Custom styling for the Google Widget container to look like a button */
+        #google_translate_element {
+            display: inline-block;
         }
         
-        html[dir="rtl"] .toc-active {
-            border-left-color: transparent !important;
-            border-right-color: #4f46e5 !important;
+        .goog-te-gadget-simple {
+            background-color: #fff !important;
+            border: 1px solid #e5e7eb !important;
+            padding: 8px 16px !important;
+            border-radius: 9999px !important;
+            font-size: 14px !important;
+            line-height: 20px !important;
+            display: inline-block;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+            transition: all 0.2s;
+        }
+        
+        .goog-te-gadget-simple:hover {
+            background-color: #f9fafb !important;
+            color: #4f46e5 !important;
+        }
+
+        .goog-te-menu-value {
+            color: #374151 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-weight: 500 !important;
+        }
+        
+        .goog-te-menu-value span {
+            color: #374151 !important;
+        }
+        
+        .goog-te-menu-value span:first-child {
+            /* This targets the language name */
+            border-left: none !important;
+        }
+
+        /* Hide the 'Powered by Google' icon if desired for cleaner look, 
+           though Google TOS usually requires some attribution. 
+           We'll keep it minimal. */
+        .goog-te-gadget-icon {
+            display: none !important;
+        }
+
+        /* TOC Active State */
+        .toc-active {
+            color: #4f46e5 !important;
+            border-left-color: #4f46e5 !important;
+            background-color: #eff6ff;
+            font-weight: 600;
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Language Switcher Component -->
-    <div class="lang-switcher">
-        <div class="relative inline-block text-left">
-            <div>
-                <button type="button" onclick="toggleDropdown(event)" class="group inline-flex justify-center w-full rounded-full border border-gray-200 shadow-lg shadow-indigo-500/10 px-4 py-3 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 focus:outline-none transition-all duration-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                    <i class="fas fa-globe mr-2 text-indigo-500 group-hover:rotate-12 transition-transform"></i>
-                    <span id="current-lang-label">Русский</span>
-                    <i class="fas fa-chevron-down ml-2 -mr-1 h-4 w-4 opacity-50"></i>
-                </button>
-            </div>
-            <div id="lang-dropdown" class="hidden origin-top-right absolute right-0 bottom-14 lg:bottom-auto lg:top-12 mt-2 w-56 rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto" role="menu">
-                <div class="py-2" role="none">
-                    <!-- Languages injected by JS -->
-                </div>
-            </div>
-        </div>
+    <!-- Language Switcher (Google Widget Container) -->
+    <div class="lang-switcher-wrapper">
+        <div id="google_translate_element"></div>
     </div>
 
     <!-- Main Layout -->
@@ -118,27 +109,124 @@
             <!-- Left Sidebar (Table of Contents) - Desktop Only -->
             <aside class="hidden lg:block lg:col-span-3 sticky top-8 max-h-[calc(100vh-4rem)] overflow-y-auto px-2">
                 <nav class="space-y-1" id="toc-desktop">
-                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3" id="toc-header">Навигация</h3>
-                    <!-- Links injected by JS -->
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4 px-3">Навигация</h3>
+                    <!-- Links injected by JS based on H2 tags -->
                 </nav>
             </aside>
 
             <!-- Main Content Area -->
             <main class="lg:col-span-9 relative">
-                <!-- Header Section -->
-                <div id="header-area" class="mb-8 fade-in text-center lg:text-left">
-                    <!-- Title/Date injected here -->
-                </div>
-
-                <!-- Content Blocks -->
-                <div id="content-area" class="space-y-6 fade-in">
-                    <!-- Cards injected here -->
-                    <div class="flex justify-center items-center h-64">
-                        <div class="animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600"></div>
+                <!-- Header -->
+                <div class="mb-8 text-center lg:text-left">
+                    <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-500 uppercase bg-indigo-50 rounded-full">
+                        Legal Document
+                    </div>
+                    <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-2 uppercase">
+                        Пользовательское соглашение Платформы Roomie
+                    </h1>
+                    <div class="flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-400 mt-4">
+                        <i class="far fa-clock"></i>
+                        <span>Дата последнего обновления: 15 января 2026 г.</span>
                     </div>
                 </div>
-            </main>
 
+                <!-- Full Legal Text (Source of Truth) -->
+                <div id="content-area" class="space-y-6">
+                    
+                    <section id="section-1" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>1.1.</strong> Настоящее Соглашение регулирует порядок использования сайта, мобильного приложения и всех сопутствующих сервисов Roomie (далее — «Сервис»).</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>1.2. Публичная оферта и отдельные согласия</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Настоящий документ является публичной офертой (предложением заключить договор на условиях, изложенных в Соглашении). Акцептом оферты является совершение Пользователем/Гостем действий, свидетельствующих о принятии условий Соглашения, включая фактическое использование Сервиса (например, просмотр страниц, использование функций, регистрация).</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Акцепт Соглашения (условий использования Сервиса) не означает автоматическое предоставление явного согласия (Consent) на обработку персональных данных для целей, где по GDPR требуется согласие (например, маркетинговые cookie/трекеры, персонализированная реклама). Там, где требуется согласие, оно запрашивается отдельно (например, через баннер cookie/настройки приватности) и может быть отозвано в любой момент без влияния на законность обработки до отзыва.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>1.3. Изменение условий Соглашения</strong></p>
+                        <p class="text-gray-600 leading-relaxed text-base">Администрация вправе изменять условия Соглашения в одностороннем порядке. При существенных изменениях Администрация уведомляет зарегистрированных Пользователей по электронной почте и/или через интерфейс Сервиса. Для существенных изменений Администрация вправе запросить подтверждение ознакомления (например, нажатием кнопки «Ознакомлен(а)» при следующем входе в аккаунт); до подтверждения доступ к отдельным функциям может быть ограничен. Новая редакция Соглашения вступает в силу с даты, указанной в Соглашении/ уведомлении, если иное прямо не предусмотрено уведомлением.</p>
+                    </section>
+
+                    <section id="section-2" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">2. ПРАВА И ОБЯЗАННОСТИ ГОСТЯ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>2.1. Ограниченная лицензия</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Администрация предоставляет Гостю неисключительное, непередаваемое право на просмотр контента (объявлений, профилей, статей) исключительно для личных некоммерческих целей.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>2.2. Запрет на скрейпинг и автоматизированный сбор данных</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Гостю запрещается использовать автоматизированные средства (скрипты, боты, парсеры, «пауки», краулеры) для сбора, копирования, выгрузки, индексирования или иного извлечения данных из Сервиса без предварительного письменного разрешения Администрации. Нарушение данного пункта рассматривается как нарушение условий Соглашения, а также может нарушать исключительные права и/или смежные права Администрации на контент и/или структуру и подборку материалов, а также права на базы данных и коммерческие обозначения (в применимой части). При выявлении нарушений Администрация вправе применять меры защиты, включая ограничение доступа (в т.ч. блокировку учетной записи, токенов доступа, ІР-адресов/диапазонов), ограничение частоты запросов, применение технических средств анти-бот защиты, а также обращение за защитой прав в порядке, предусмотренном законом.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>2.3. Конфиденциальность Гостя</strong></p>
+                        <p class="text-gray-600 leading-relaxed text-base">Гость осознает, что даже без регистрации его действия в Сервисе могут фиксироваться (например, журналы сервера, технические идентификаторы, события аналитики). Условия обработки таких данных регулируются разделом 4 настоящего Соглашения, Политикой конфиденциальности и Политикой cookie.</p>
+                    </section>
+
+                    <section id="section-3" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">3. ИСПОЛЬЗОВАНИЕ ФАЙЛОВ COOKIE</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>3.1. Принципы использования</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Roomie использует cookie и аналогичные технологии для улучшения пользовательского опыта, обеспечения безопасности сессий и проведения аналитики/маркетинга в пределах применимого права.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>3.2. Классификация cookie</strong></p>
+                        <ul class="list-none space-y-3 mb-6 bg-gray-50 p-5 rounded-xl border border-gray-100">
+                            <li class="relative pl-6 text-gray-700 leading-relaxed"><i class="fas fa-check text-indigo-500 absolute left-0 top-1.5 text-xs"></i><strong>Строго необходимые (Strictly Necessary):</strong> используются только в той мере, в которой они абсолютно технически необходимы для предоставления Сервиса.</li>
+                            <li class="relative pl-6 text-gray-700 leading-relaxed"><i class="fas fa-check text-indigo-500 absolute left-0 top-1.5 text-xs"></i><strong>Функциональные (Functional):</strong> запоминают выбор региона, валюты и языка. Срок хранения: до 12 месяцев.</li>
+                            <li class="relative pl-6 text-gray-700 leading-relaxed"><i class="fas fa-check text-indigo-500 absolute left-0 top-1.5 text-xs"></i><strong>Аналитические и маркетинговые:</strong> используются для анализа аудитории и таргетинга рекламы. Включаются только после получения явного согласия (Opt-In).</li>
+                        </ul>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>3.3. Управление согласием и срок действия согласия</strong></p>
+                        <p class="text-gray-600 leading-relaxed text-base">Гость/Пользователь может в любой момент изменить настройки сookie через панель управления конфиденциальностью («Privacy Settings») в футере Сайта. Отзыв согласия не имеет обратной силы. Согласие запрашивается повторно не реже одного раза в 12 месяцев.</p>
+                    </section>
+
+                    <section id="section-4" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">4. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>4.1. Интеграция с Политикой конфиденциальности</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Настоящее Соглашение неразрывно связано с Политикой конфиденциальности Roomie. В случае противоречий между документами, для вопросов обработки данных приоритет имеет Политика конфиденциальности.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>4.2. Трансграничная передача</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Поскольку Roomie может использовать глобальные сервисы, данные Гостя/Пользователя могут передаваться на серверы, расположенные за пределами ЕС. При передаче данных в «третьи страны» Администрация использует применимые механизмы передачи (SCC) и проводит оценку влияния передачи (TIA).</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>4.3. Сроки хранения (Retention Policy)</strong></p>
+                        <ul class="list-none space-y-3 mb-6 bg-gray-50 p-5 rounded-xl border border-gray-100">
+                            <li class="relative pl-6 text-gray-700 leading-relaxed"><i class="fas fa-check text-indigo-500 absolute left-0 top-1.5 text-xs"></i>Данные незарегистрированных Гостей хранятся не более 12 месяцев.</li>
+                            <li class="relative pl-6 text-gray-700 leading-relaxed"><i class="fas fa-check text-indigo-500 absolute left-0 top-1.5 text-xs"></i>Маркетинговые профили удаляются при отсутствии активности, но не хранятся дольше 13 месяцев.</li>
+                        </ul>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>4.4. Права субъекта данных</strong></p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base">Субъект данных имеет права, предусмотренные главой III GDPR, включая право на доступ, исправление, удаление («право на забвение»), ограничение обработки. Для реализации прав субъект данных направляет запрос через контакты DPO.</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>4.5. Контактное лицо (DPO):</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a>.</p>
+                    </section>
+
+                    <section id="section-5" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">5. ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>5.1.</strong> Сервис предоставляется на условиях «как есть» (as is). Администрация не гарантирует, что работа cookie и отдельных функций будет поддерживаться всеми типами браузеров.</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>5.2.</strong> Администрация принимает разумные меры для обеспечения работоспособности, но не гарантирует отсутствие сбоев, перерывов, потерь данных в результате действий третьих лиц или форс-мажора.</p>
+                    </section>
+
+                    <section id="section-6" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">6. ПРАВА АДМИНИСТРАЦИИ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>6.1.</strong> Администрация обязуется предпринимать меры для защиты Сервиса от несанкционированного доступа.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>6.2.</strong> Администрация вправе изменять функциональность Сервиса или прекращать предоставление отдельных функций.</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>6.3.</strong> Администрация вправе проводить модерацию контента и ограничивать доступ при нарушении Соглашения.</p>
+                    </section>
+
+                    <section id="section-7" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">7. ОТВЕТСТВЕННОСТЬ СТОРОН</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>7.1.</strong> Пользователь несет ответственность за нарушение Соглашения и законность размещаемого контента.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>7.2.</strong> Администрация не несет ответственности за действия третьих лиц и внешние ссылки.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>7.3.</strong> Пользователь обязан возместить убытки при нарушении Соглашения.</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>7.4.</strong> Стороны освобождаются от ответственности при форс-мажоре.</p>
+                    </section>
+
+                    <section id="section-8" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">8. РАЗРЕШЕНИЕ СПОРОВ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>8.1.</strong> Соглашение регулируется законодательством юрисдикции Администрации (если иное не предусмотрено законом).</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>8.2.</strong> Обязателен досудебный порядок (срок рассмотрения претензии — 10 дней).</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>8.3.</strong> Подсудность определяется в соответствии с применимым законодательством.</p>
+                    </section>
+
+                    <section id="section-9" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">9. СРОК ДЕЙСТВИЯ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>9.1.</strong> Соглашение действует до прекращения использования Сервиса или удаления аккаунта.</p>
+                        <p class="text-gray-600 leading-relaxed mb-4 text-base"><strong>9.2.</strong> Администрация вправе ограничить доступ при нарушениях.</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>9.3.</strong> Положения об ответственности сохраняют силу после прекращения действия Соглашения.</p>
+                    </section>
+
+                    <section id="section-10" class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-gray-100">
+                        <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100">10. РЕКВИЗИТЫ</h2>
+                        <p class="text-gray-600 leading-relaxed mb-2 text-base"><strong>Наименование:</strong> ТОВ "hotelmol"</p>
+                        <p class="text-gray-600 leading-relaxed mb-2 text-base"><strong>Юридический адрес:</strong> Воздвиженская, 40</p>
+                        <p class="text-gray-600 leading-relaxed text-base"><strong>Email:</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a></p>
+                    </section>
+
+                </div>
+            </main>
         </div>
     </div>
 
@@ -146,809 +234,92 @@
     <footer class="bg-white border-t border-gray-100 mt-auto">
         <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
             <p class="text-gray-400 text-sm">
-                &copy; 2026 Roomie. <span id="footer-rights">All rights reserved.</span>
+                &copy; 2026 Roomie. All rights reserved.
             </p>
         </div>
     </footer>
 
+    <!-- 1. Google Translate API Snippet -->
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ru', // Source language
+                // Included languages based on your request:
+                includedLanguages: 'en,zh-CN,es,fr,pt,de,ja,zh-TW,hi,bn,ar,id,vi,tr,ko,pl,ru', 
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <!-- 2. Auto-Translation Logic & TOC generator -->
     <script>
-        // --- 1. Data Source (Full Translations) ---
-        // Helper to generate standard sections for brevity in code where structure repeats, 
-        // but actual text is fully translated below.
-        
-        const contentData = {
-            'ru': {
-                name: "Русский", dir: "ltr", tocTitle: "Содержание", title: "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ", subtitle: "ПЛАТФОРМА ROOMIE", date: "Обновлено: 15 января 2026 г.",
-                body: `
-                    <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
-                    <p><strong>1.1.</strong> Настоящее Соглашение регулирует порядок использования сайта, мобильного приложения и всех сопутствующих сервисов Roomie (далее — «Сервис»).</p>
-                    <p><strong>1.2. Публичная оферта.</strong> Настоящий документ является публичной офертой. Акцептом оферты является совершение Пользователем/Гостем действий, свидетельствующих о принятии условий (просмотр, регистрация). Акцепт не означает автоматическое согласие на маркетинговые cookie (требуется отдельное согласие).</p>
-                    <p><strong>1.3. Изменения.</strong> Администрация вправе изменять условия. При существенных изменениях Пользователи получают уведомление.</p>
-                    <h2>2. ПРАВА И ОБЯЗАННОСТИ ГОСТЯ</h2>
-                    <p><strong>2.1. Лицензия.</strong> Ограниченное право на просмотр контента для личных целей.</p>
-                    <p><strong>2.2. Запрет скрейпинга.</strong> Запрещено использовать ботов и парсеры для сбора данных.</p>
-                    <p><strong>2.3. Конфиденциальность.</strong> Действия Гостя могут фиксироваться согласно Политике конфиденциальности.</p>
-                    <h2>3. COOKIE И ТРЕКИНГ</h2>
-                    <p><strong>3.1.</strong> Мы используем cookie для безопасности и аналитики.</p>
-                    <p><strong>3.2. Типы:</strong> Строго необходимые, Функциональные, Маркетинговые (только с согласия).</p>
-                    <p><strong>3.3.</strong> Управление через «Privacy Settings». Согласие обновляется раз в 12 месяцев.</p>
-                    <h2>4. ПЕРСОНАЛЬНЫЕ ДАННЫЕ</h2>
-                    <p><strong>4.1.</strong> Регулируется Политикой конфиденциальности.</p>
-                    <p><strong>4.2.</strong> Возможна трансграничная передача данных (SCC).</p>
-                    <p><strong>4.3. Хранение:</strong> Логи до 12 месяцев, маркетинг до достижения целей.</p>
-                    <p><strong>4.4. Права:</strong> Доступ, удаление, исправление (GDPR).</p>
-                    <p><strong>4.5. Контакт DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ</h2>
-                    <p>Сервис предоставляется «как есть». Мы не гарантируем отсутствие сбоев.</p>
-                    <h2>6. ПРАВА АДМИНИСТРАЦИИ</h2>
-                    <p>Мы можем менять функционал, модерировать контент и ограничивать доступ при нарушениях.</p>
-                    <h2>7. ОТВЕТСТВЕННОСТЬ</h2>
-                    <p>Пользователь отвечает за свои действия. Мы не отвечаем за третьих лиц.</p>
-                    <h2>8. РАЗРЕШЕНИЕ СПОРОВ</h2>
-                    <p>Применимое право юрисдикции Администрации. Обязательный досудебный порядок (10 дней).</p>
-                    <h2>9. СРОК ДЕЙСТВИЯ</h2>
-                    <p>До удаления аккаунта. Обязательства сохраняются.</p>
-                    <h2>10. РЕКВИЗИТЫ</h2>
-                    <p>ТОВ "hotelmol", Воздвиженская 40. E-mail: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'en': {
-                name: "English", dir: "ltr", tocTitle: "Contents", title: "USER AGREEMENT", subtitle: "ROOMIE PLATFORM", date: "Last Updated: January 15, 2026",
-                body: `
-                    <h2>1. GENERAL PROVISIONS</h2>
-                    <p><strong>1.1.</strong> This Agreement regulates the use of the Roomie website, mobile application, and services.</p>
-                    <p><strong>1.2. Public Offer.</strong> This is a public offer. Acceptance includes actual use of the Service. Acceptance does not imply automatic GDPR consent for marketing (requested separately).</p>
-                    <p><strong>1.3. Changes.</strong> We may amend this Agreement. Significant changes will be notified.</p>
-                    <h2>2. GUEST RIGHTS</h2>
-                    <p><strong>2.1. License.</strong> Non-exclusive right to view content for personal use only.</p>
-                    <p><strong>2.2. No Scraping.</strong> Automated data collection (bots) is strictly prohibited.</p>
-                    <p><strong>2.3. Privacy.</strong> Guest actions may be logged governed by our Privacy Policy.</p>
-                    <h2>3. COOKIES & TRACKING</h2>
-                    <p><strong>3.1.</strong> Used for security, functionality, and analytics.</p>
-                    <p><strong>3.2. Types:</strong> Strictly Necessary, Functional, Marketing (Opt-In only).</p>
-                    <p><strong>3.3.</strong> Manage via "Privacy Settings". Consent re-requested every 12 months.</p>
-                    <h2>4. DATA PROTECTION</h2>
-                    <p><strong>4.1.</strong> Governed by Privacy Policy.</p>
-                    <p><strong>4.2.</strong> Cross-border transfers protected by SCCs.</p>
-                    <p><strong>4.3. Retention:</strong> Logs ~12 months, marketing until goal achievement.</p>
-                    <p><strong>4.4. Rights:</strong> Access, rectification, erasure (GDPR).</p>
-                    <p><strong>4.5. DPO Contact:</strong> legal@hotelmol.com</p>
-                    <h2>5. DISCLAIMER</h2>
-                    <p>Service provided "as is". We are not liable for failures beyond control.</p>
-                    <h2>6. ADMINISTRATION RIGHTS</h2>
-                    <p>We may modify Service, moderate content, and restrict access for violations.</p>
-                    <h2>7. LIABILITY</h2>
-                    <p>Users are responsible for content. We are not liable for third parties.</p>
-                    <h2>8. DISPUTES</h2>
-                    <p>Governed by Administration's jurisdiction. Mandatory pre-trial settlement (10 days).</p>
-                    <h2>9. TERMINATION</h2>
-                    <p>Valid until account deletion. Liability clauses survive.</p>
-                    <h2>10. CONTACTS</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'zh': {
-                name: "中文 (Mandarin)", dir: "ltr", tocTitle: "目录", title: "用户协议", subtitle: "ROOMIE 平台", date: "最后更新：2026年1月15日",
-                body: `
-                    <h2>1. 总则</h2>
-                    <p><strong>1.1.</strong> 本协议规范 Roomie 网站、移动应用程序及相关服务的使用。</p>
-                    <p><strong>1.2. 公开要约。</strong> 本文件构成公开要约。实际使用服务即视为接受。接受本协议并不意味着自动同意 GDPR 营销数据处理（需单独同意）。</p>
-                    <p><strong>1.3. 变更。</strong> 我们有权修改协议。重大变更将进行通知。</p>
-                    <h2>2. 访客权利</h2>
-                    <p><strong>2.1. 许可。</strong> 仅限个人非商业用途的非独家内容浏览权。</p>
-                    <p><strong>2.2. 禁止爬虫。</strong> 严禁使用自动化工具（机器人、爬虫）收集数据。</p>
-                    <p><strong>2.3. 隐私。</strong> 访客行为可能会根据隐私政策被记录。</p>
-                    <h2>3. COOKIE 与追踪</h2>
-                    <p><strong>3.1.</strong> 用于安全、功能和分析。</p>
-                    <p><strong>3.2. 类型：</strong> 绝对必要、功能性、营销（需选择同意）。</p>
-                    <p><strong>3.3.</strong> 通过“隐私设置”管理。每12个月重新请求同意。</p>
-                    <h2>4. 数据保护</h2>
-                    <p><strong>4.1.</strong> 受隐私政策管辖。</p>
-                    <p><strong>4.2.</strong> 跨境传输受标准合同条款 (SCC) 保护。</p>
-                    <p><strong>4.3. 保留：</strong> 日志约12个月，营销数据直至目标达成。</p>
-                    <p><strong>4.4. 权利：</strong> 访问、更正、删除 (GDPR)。</p>
-                    <p><strong>4.5. DPO 联系方式：</strong> legal@hotelmol.com</p>
-                    <h2>5. 免责声明</h2>
-                    <p>服务按“原样”提供。我们不对超出控制范围的故障负责。</p>
-                    <h2>6. 管理方权利</h2>
-                    <p>我们可修改服务、审核内容并限制违规访问。</p>
-                    <h2>7. 责任</h2>
-                    <p>用户对其内容负责。我们不对第三方负责。</p>
-                    <h2>8. 争议解决</h2>
-                    <p>受管理方所在司法管辖区法律管辖。强制性庭前和解（10天）。</p>
-                    <h2>9. 终止</h2>
-                    <p>有效期至账户删除。责任条款在终止后继续有效。</p>
-                    <h2>10. 联系方式</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. 邮箱：<a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'es': {
-                name: "Español", dir: "ltr", tocTitle: "Contenido", title: "ACUERDO DE USUARIO", subtitle: "PLATAFORMA ROOMIE", date: "Última actualización: 15 de enero de 2026",
-                body: `
-                    <h2>1. DISPOSICIONES GENERALES</h2>
-                    <p><strong>1.1.</strong> Este Acuerdo regula el uso del sitio web, la aplicación móvil y los servicios de Roomie.</p>
-                    <p><strong>1.2. Oferta Pública.</strong> Este documento es una oferta pública. La aceptación incluye el uso real del Servicio. La aceptación no implica el consentimiento automático del RGPD para marketing.</p>
-                    <p><strong>1.3. Cambios.</strong> Podemos modificar este Acuerdo. Los cambios significativos serán notificados.</p>
-                    <h2>2. DERECHOS DEL INVITADO</h2>
-                    <p><strong>2.1. Licencia.</strong> Derecho no exclusivo para ver contenido solo para uso personal.</p>
-                    <p><strong>2.2. No Scraping.</strong> Está estrictamente prohibida la recolección automatizada de datos (bots).</p>
-                    <p><strong>2.3. Privacidad.</strong> Las acciones de los invitados pueden registrarse según nuestra Política de Privacidad.</p>
-                    <h2>3. COOKIES Y RASTREO</h2>
-                    <p><strong>3.1.</strong> Uso para seguridad, funcionalidad y análisis.</p>
-                    <p><strong>3.2. Tipos:</strong> Estrictamente necesarias, Funcionales, Marketing (solo con consentimiento).</p>
-                    <p><strong>3.3.</strong> Gestionar en "Configuración de privacidad". Consentimiento renovado cada 12 meses.</p>
-                    <h2>4. PROTECCIÓN DE DATOS</h2>
-                    <p><strong>4.1.</strong> Regido por la Política de Privacidad.</p>
-                    <p><strong>4.2.</strong> Transferencias transfronterizas protegidas por SCC.</p>
-                    <p><strong>4.3. Retención:</strong> Registros ~12 meses, marketing hasta lograr el objetivo.</p>
-                    <p><strong>4.4. Derechos:</strong> Acceso, rectificación, supresión (RGPD).</p>
-                    <p><strong>4.5. Contacto DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. DESCARGO DE RESPONSABILIDAD</h2>
-                    <p>Servicio proporcionado "tal cual". No somos responsables de fallos fuera de control.</p>
-                    <h2>6. DERECHOS DE LA ADMINISTRACIÓN</h2>
-                    <p>Podemos modificar el Servicio, moderar contenido y restringir el acceso por violaciones.</p>
-                    <h2>7. RESPONSABILIDAD</h2>
-                    <p>Los usuarios son responsables de su contenido. No somos responsables de terceros.</p>
-                    <h2>8. DISPUTAS</h2>
-                    <p>Regido por la jurisdicción de la Administración. Acuerdo previo al juicio obligatorio (10 días).</p>
-                    <h2>9. TERMINACIÓN</h2>
-                    <p>Válido hasta la eliminación de la cuenta. Las cláusulas de responsabilidad sobreviven.</p>
-                    <h2>10. CONTACTOS</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'fr': {
-                name: "Français", dir: "ltr", tocTitle: "Sommaire", title: "CONDITIONS D'UTILISATION", subtitle: "PLATEFORME ROOMIE", date: "Dernière mise à jour : 15 janvier 2026",
-                body: `
-                    <h2>1. DISPOSITIONS GÉNÉRALES</h2>
-                    <p><strong>1.1.</strong> Le présent Accord régit l'utilisation du site, de l'application et des services Roomie.</p>
-                    <p><strong>1.2. Offre Publique.</strong> Ceci est une offre publique. L'utilisation vaut acceptation. L'acceptation n'implique pas le consentement RGPD automatique pour le marketing.</p>
-                    <p><strong>1.3. Modifications.</strong> Nous pouvons modifier cet Accord. Les changements majeurs seront notifiés.</p>
-                    <h2>2. DROITS DES INVITÉS</h2>
-                    <p><strong>2.1. Licence.</strong> Droit non exclusif de consulter le contenu pour un usage personnel.</p>
-                    <p><strong>2.2. Pas de Scraping.</strong> La collecte automatisée de données (bots) est strictement interdite.</p>
-                    <p><strong>2.3. Confidentialité.</strong> Les actions sont enregistrées selon notre Politique de Confidentialité.</p>
-                    <h2>3. COOKIES ET SUIVI</h2>
-                    <p><strong>3.1.</strong> Utilisés pour la sécurité, les fonctionnalités et l'analyse.</p>
-                    <p><strong>3.2. Types :</strong> Strictement nécessaires, Fonctionnels, Marketing (avec consentement).</p>
-                    <p><strong>3.3.</strong> Gestion via "Paramètres de confidentialité". Consentement redemandé tous les 12 mois.</p>
-                    <h2>4. PROTECTION DES DONNÉES</h2>
-                    <p><strong>4.1.</strong> Régie par la Politique de Confidentialité.</p>
-                    <p><strong>4.2.</strong> Transferts transfrontaliers protégés par les CCT.</p>
-                    <p><strong>4.3. Rétention :</strong> Logs ~12 mois, marketing jusqu'à la fin de l'objectif.</p>
-                    <p><strong>4.4. Droits :</strong> Accès, rectification, effacement (RGPD).</p>
-                    <p><strong>4.5. Contact DPO :</strong> legal@hotelmol.com</p>
-                    <h2>5. AVERTISSEMENT</h2>
-                    <p>Service fourni "tel quel". Nous ne sommes pas responsables des pannes hors de notre contrôle.</p>
-                    <h2>6. DROITS DE L'ADMINISTRATION</h2>
-                    <p>Nous pouvons modifier le Service, modérer le contenu et restreindre l'accès en cas de violation.</p>
-                    <h2>7. RESPONSABILITÉ</h2>
-                    <p>Les utilisateurs sont responsables de leur contenu. Nous ne sommes pas responsables des tiers.</p>
-                    <h2>8. LITIGES</h2>
-                    <p>Régi par la juridiction de l'Administration. Règlement amiable obligatoire (10 jours).</p>
-                    <h2>9. RÉSILIATION</h2>
-                    <p>Valide jusqu'à la suppression du compte. Les clauses de responsabilité survivent.</p>
-                    <h2>10. CONTACTS</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email : <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'pt': {
-                name: "Português", dir: "ltr", tocTitle: "Índice", title: "TERMOS DE USO", subtitle: "PLATAFORMA ROOMIE", date: "Atualizado em: 15 de janeiro de 2026",
-                body: `
-                    <h2>1. DISPOSIÇÕES GERAIS</h2>
-                    <p><strong>1.1.</strong> Este Acordo regula o uso do site, aplicativo móvel e serviços Roomie.</p>
-                    <p><strong>1.2. Oferta Pública.</strong> O uso implica aceitação. A aceitação não implica consentimento automático GDPR para marketing.</p>
-                    <p><strong>1.3. Alterações.</strong> Podemos alterar este Acordo. Mudanças significativas serão notificadas.</p>
-                    <h2>2. DIREITOS DO CONVIDADO</h2>
-                    <p><strong>2.1. Licença.</strong> Direito não exclusivo de visualizar conteúdo apenas para uso pessoal.</p>
-                    <p><strong>2.2. Proibido Scraping.</strong> A coleta automatizada de dados (bots) é estritamente proibida.</p>
-                    <h2>3. COOKIES E RASTREAMENTO</h2>
-                    <p><strong>3.1.</strong> Uso para segurança e análise.</p>
-                    <p><strong>3.2. Tipos:</strong> Estritamente necessários, Funcionais, Marketing (apenas com consentimento).</p>
-                    <p><strong>3.3.</strong> Gerenciar em "Configurações de Privacidade".</p>
-                    <h2>4. PROTEÇÃO DE DADOS</h2>
-                    <p><strong>4.1.</strong> Regido pela Política de Privacidade.</p>
-                    <p><strong>4.2.</strong> Transferências transfronteiriças protegidas por SCCs.</p>
-                    <p><strong>4.3. Retenção:</strong> Logs ~12 meses.</p>
-                    <p><strong>4.4. Direitos:</strong> Acesso, retificação, apagamento (GDPR).</p>
-                    <p><strong>4.5. Contato DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. ISENÇÃO DE RESPONSABILIDADE</h2>
-                    <p>Serviço fornecido "como está".</p>
-                    <h2>6. DIREITOS DA ADMINISTRAÇÃO</h2>
-                    <p>Podemos modificar o Serviço e restringir o acesso por violações.</p>
-                    <h2>7. RESPONSABILIDADE</h2>
-                    <p>Usuários são responsáveis por seu conteúdo.</p>
-                    <h2>8. DISPUTAS</h2>
-                    <p>Jurisdição da Administração. Acordo prévio obrigatório (10 dias).</p>
-                    <h2>9. TERMINAÇÃO</h2>
-                    <p>Válido até a exclusão da conta.</p>
-                    <h2>10. CONTATOS</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'de': {
-                name: "Deutsch", dir: "ltr", tocTitle: "Inhalt", title: "NUTZERVEREINBARUNG", subtitle: "ROOMIE PLATTFORM", date: "Letzte Aktualisierung: 15. Januar 2026",
-                body: `
-                    <h2>1. ALLGEMEINE BESTIMMUNGEN</h2>
-                    <p><strong>1.1.</strong> Diese Vereinbarung regelt die Nutzung der Roomie-Website und -Dienste.</p>
-                    <p><strong>1.2. Öffentliches Angebot.</strong> Nutzung gilt als Annahme. Keine automatische DSGVO-Zustimmung für Marketing.</p>
-                    <p><strong>1.3. Änderungen.</strong> Wir können diese Vereinbarung ändern. Wesentliche Änderungen werden mitgeteilt.</p>
-                    <h2>2. GASTRECHTE</h2>
-                    <p><strong>2.1. Lizenz.</strong> Nicht-exklusives Recht, Inhalte nur für den persönlichen Gebrauch anzusehen.</p>
-                    <p><strong>2.2. Kein Scraping.</strong> Automatisierte Datenerfassung (Bots) ist strengstens untersagt.</p>
-                    <h2>3. COOKIES & TRACKING</h2>
-                    <p><strong>3.1.</strong> Nutzung für Sicherheit und Analyse.</p>
-                    <p><strong>3.2. Typen:</strong> Streng notwendig, Funktional, Marketing (nur mit Einwilligung).</p>
-                    <p><strong>3.3.</strong> Verwaltung über "Datenschutzeinstellungen".</p>
-                    <h2>4. DATENSCHUTZ</h2>
-                    <p><strong>4.1.</strong> Geregelt durch die Datenschutzrichtlinie.</p>
-                    <p><strong>4.2.</strong> Grenzüberschreitende Übermittlungen geschützt durch SCCs.</p>
-                    <p><strong>4.3. Speicherung:</strong> Logs ~12 Monate.</p>
-                    <p><strong>4.4. Rechte:</strong> Auskunft, Berichtigung, Löschung (DSGVO).</p>
-                    <p><strong>4.5. DSB-Kontakt:</strong> legal@hotelmol.com</p>
-                    <h2>5. HAFTUNGSAUSSCHLUSS</h2>
-                    <p>Dienst wird "wie besehen" bereitgestellt.</p>
-                    <h2>6. RECHTE DER VERWALTUNG</h2>
-                    <p>Wir können den Dienst ändern und den Zugang bei Verstößen beschränken.</p>
-                    <h2>7. HAFTUNG</h2>
-                    <p>Nutzer haften für ihre Inhalte.</p>
-                    <h2>8. STREITIGKEITEN</h2>
-                    <p>Gerichtsstand der Verwaltung. Obligatorische vorgerichtliche Einigung (10 Tage).</p>
-                    <h2>9. KÜNDIGUNG</h2>
-                    <p>Gültig bis zur Kontolöschung.</p>
-                    <h2>10. KONTAKT</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. E-Mail: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'ja': {
-                name: "日本語", dir: "ltr", tocTitle: "目次", title: "利用規約", subtitle: "ROOMIE プラットフォーム", date: "最終更新日：2026年1月15日",
-                body: `
-                    <h2>1. 一般規定</h2>
-                    <p><strong>1.1.</strong> 本規約は、Roomieのウェブサイトおよびサービスの使用を規定します。</p>
-                    <p><strong>1.2. 公開オファー。</strong> 本サービスの使用は承諾とみなされます。マーケティングに対するGDPRの自動同意を意味しません。</p>
-                    <p><strong>1.3. 変更。</strong> 当社は本規約を変更することができます。重要な変更は通知されます。</p>
-                    <h2>2. ゲストの権利</h2>
-                    <p><strong>2.1. ライセンス。</strong> 個人的な使用に限りコンテンツを閲覧する非独占的な権利。</p>
-                    <p><strong>2.2. スクレイピング禁止。</strong> 自動データ収集（ボット）は厳禁です。</p>
-                    <h2>3. クッキーと追跡</h2>
-                    <p><strong>3.1.</strong> セキュリティと分析に使用されます。</p>
-                    <p><strong>3.2. 種類：</strong> 厳密に必要、機能的、マーケティング（同意のみ）。</p>
-                    <p><strong>3.3.</strong> 「プライバシー設定」で管理します。</p>
-                    <h2>4. データ保護</h2>
-                    <p><strong>4.1.</strong> プライバシーポリシーに準拠します。</p>
-                    <p><strong>4.2.</strong> SCCによって保護される越境移転。</p>
-                    <p><strong>4.3. 保持：</strong> ログ約12ヶ月。</p>
-                    <p><strong>4.4. 権利：</strong> アクセス、訂正、消去（GDPR）。</p>
-                    <p><strong>4.5. DPO連絡先：</strong> legal@hotelmol.com</p>
-                    <h2>5. 免責事項</h2>
-                    <p>サービスは「現状のまま」提供されます。</p>
-                    <h2>6. 運営の権利</h2>
-                    <p>当社はサービスを変更し、違反があった場合のアクセスを制限することができます。</p>
-                    <h2>7. 責任</h2>
-                    <p>ユーザーは自身のコンテンツに責任を負います。</p>
-                    <h2>8. 紛争</h2>
-                    <p>運営の管轄区域に準拠。義務的な裁判前の和解（10日）。</p>
-                    <h2>9. 終了</h2>
-                    <p>アカウント削除まで有効。</p>
-                    <h2>10. 連絡先</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. メール：<a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'zh-HK': {
-                name: "廣東話 (Cantonese)", dir: "ltr", tocTitle: "目錄", title: "用戶協議", subtitle: "ROOMIE 平台", date: "最後更新：2026年1月15日",
-                body: `
-                    <h2>1. 總則</h2>
-                    <p><strong>1.1.</strong> 本協議規範 Roomie 網站及服務嘅使用。</p>
-                    <p><strong>1.2. 公開要約。</strong> 使用服務即視為接受。唔代表自動同意 GDPR 營銷數據處理。</p>
-                    <p><strong>1.3. 變更。</strong> 我哋有權修改協議。重大變更會通知。</p>
-                    <h2>2. 訪客權利</h2>
-                    <p><strong>2.1. 許可。</strong> 僅限個人用途嘅非獨家內容瀏覽權。</p>
-                    <p><strong>2.2. 禁止爬蟲。</strong> 嚴禁使用自動化工具（機械人）收集數據。</p>
-                    <h2>3. COOKIE 同追蹤</h2>
-                    <p><strong>3.1.</strong> 用於安全同分析。</p>
-                    <p><strong>3.2. 類型：</strong> 絕對必要、功能性、營銷（需同意）。</p>
-                    <p><strong>3.3.</strong> 喺「私隱設定」管理。</p>
-                    <h2>4. 數據保護</h2>
-                    <p><strong>4.1.</strong> 受私隱政策管轄。</p>
-                    <p><strong>4.2.</strong> 跨境傳輸受 SCC 保護。</p>
-                    <p><strong>4.3. 保留：</strong> 記錄約12個月。</p>
-                    <p><strong>4.4. 權利：</strong> 訪問、更正、刪除 (GDPR)。</p>
-                    <p><strong>4.5. DPO 聯絡：</strong> legal@hotelmol.com</p>
-                    <h2>5. 免責聲明</h2>
-                    <p>服務按「原樣」提供。</p>
-                    <h2>6. 管理方權利</h2>
-                    <p>我哋可以修改服務同限制違規訪問。</p>
-                    <h2>7. 責任</h2>
-                    <p>用戶對自己嘅內容負責。</p>
-                    <h2>8. 爭議解決</h2>
-                    <p>受管理方所在司法管轄區法律管轄。強制性庭前和解（10日）。</p>
-                    <h2>9. 終止</h2>
-                    <p>有效期至賬戶刪除。</p>
-                    <h2>10. 聯絡方式</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. 電郵：<a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'hi': {
-                name: "हिन्दी (Hindi)", dir: "ltr", tocTitle: "सामग्री", title: "उपयोगकर्ता समझौता", subtitle: "ROOMIE प्लेटफ़ॉर्म", date: "अंतिम अद्यतन: 15 जनवरी 2026",
-                body: `
-                    <h2>1. सामान्य प्रावधान</h2>
-                    <p><strong>1.1.</strong> यह समझौता Roomie वेबसाइट और सेवाओं के उपयोग को नियंत्रित करता है।</p>
-                    <p><strong>1.2. सार्वजनिक प्रस्ताव।</strong> सेवा का उपयोग स्वीकृति माना जाता है। विपणन के लिए स्वचालित GDPR सहमति का अर्थ नहीं है।</p>
-                    <p><strong>1.3. परिवर्तन।</strong> हम इस समझौते में संशोधन कर सकते हैं। महत्वपूर्ण परिवर्तनों को सूचित किया जाएगा।</p>
-                    <h2>2. अतिथि अधिकार</h2>
-                    <p><strong>2.1. लाइसेंस।</strong> केवल व्यक्तिगत उपयोग के लिए सामग्री देखने का गैर-अनन्य अधिकार।</p>
-                    <p><strong>2.2. स्क्रैपिंग नहीं।</strong> स्वचालित डेटा संग्रह (बॉट) सख्त वर्जित है।</p>
-                    <h2>3. कुकीज़ और ट्रैकिंग</h2>
-                    <p><strong>3.1.</strong> सुरक्षा और विश्लेषण के लिए उपयोग किया जाता है।</p>
-                    <p><strong>3.2. प्रकार:</strong> कड़ाई से आवश्यक, कार्यात्मक, विपणन (केवल सहमति से)।</p>
-                    <p><strong>3.3.</strong> "गोपनीयता सेटिंग्स" के माध्यम से प्रबंधित करें।</p>
-                    <h2>4. डेटा सुरक्षा</h2>
-                    <p><strong>4.1.</strong> गोपनीयता नीति द्वारा शासित।</p>
-                    <p><strong>4.2.</strong> SCC द्वारा संरक्षित सीमा पार स्थानांतरण।</p>
-                    <p><strong>4.3. प्रतिधारण:</strong> लॉग ~12 महीने।</p>
-                    <p><strong>4.4. अधिकार:</strong> पहुंच, सुधार, उन्मूलन (GDPR)।</p>
-                    <p><strong>4.5. DPO संपर्क:</strong> legal@hotelmol.com</p>
-                    <h2>5. अस्वीकरण</h2>
-                    <p>सेवा "जैसी है" प्रदान की जाती है।</p>
-                    <h2>6. प्रशासन के अधिकार</h2>
-                    <p>हम सेवा को संशोधित कर सकते हैं और उल्लंघन के लिए पहुंच को प्रतिबंधित कर सकते हैं।</p>
-                    <h2>7. दायित्व</h2>
-                    <p>उपयोगकर्ता अपनी सामग्री के लिए जिम्मेदार हैं।</p>
-                    <h2>8. विवाद</h2>
-                    <p>प्रशासन के क्षेत्राधिकार द्वारा शासित। अनिवार्य पूर्व-परीक्षण निपटान (10 दिन)।</p>
-                    <h2>9. समाप्ति</h2>
-                    <p>खाता हटाने तक मान्य।</p>
-                    <h2>10. संपर्क</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. ईमेल: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'bn': {
-                name: "বাংলা (Bengali)", dir: "ltr", tocTitle: "সূচিপত্র", title: "ব্যবহারকারী চুক্তি", subtitle: "ROOMIE প্ল্যাটফর্ম", date: "সর্বশেষ আপডেট: 15 জানুয়ারী 2026",
-                body: `
-                    <h2>1. সাধারণ বিধান</h2>
-                    <p><strong>1.1.</strong> এই চুক্তি Roomie ওয়েবসাইট এবং পরিষেবার ব্যবহার নিয়ন্ত্রণ করে।</p>
-                    <p><strong>1.2. পাবলিক অফার।</strong> ব্যবহার গ্রহণযোগ্যতা নির্দেশ করে। বিপণনের জন্য স্বয়ংক্রিয় GDPR সম্মতি বোঝায় না।</p>
-                    <p><strong>1.3. পরিবর্তন।</strong> আমরা এই চুক্তি সংশোধন করতে পারি। গুরুত্বপূর্ণ পরিবর্তন জানানো হবে।</p>
-                    <h2>2. অতিথির অধিকার</h2>
-                    <p><strong>2.1. লাইসেন্স।</strong> শুধুমাত্র ব্যক্তিগত ব্যবহারের জন্য সামগ্রী দেখার অ-এক্সক্লুসিভ অধিকার।</p>
-                    <p><strong>2.2. কোন স্ক্র্যাপিং নয়।</strong> স্বয়ংক্রিয় ডেটা সংগ্রহ (বট) কঠোরভাবে নিষিদ্ধ।</p>
-                    <h2>3. কুকিজ এবং ট্র্যাকিং</h2>
-                    <p><strong>3.1.</strong> নিরাপত্তা এবং বিশ্লেষণের জন্য ব্যবহৃত হয়।</p>
-                    <p><strong>3.2. প্রকার:</strong> কঠোরভাবে প্রয়োজনীয়, কার্যকরী, বিপণন (শুধুমাত্র সম্মতি সহ)।</p>
-                    <p><strong>3.3.</strong> "গোপনীয়তা সেটিংস" এর মাধ্যমে পরিচালনা করুন।</p>
-                    <h2>4. ডেটা সুরক্ষা</h2>
-                    <p><strong>4.1.</strong> গোপনীয়তা নীতি দ্বারা শাসিত।</p>
-                    <p><strong>4.2.</strong> SCC দ্বারা সুরক্ষিত আন্তঃসীমান্ত স্থানান্তর।</p>
-                    <p><strong>4.3. ধারণ:</strong> লগ ~12 মাস।</p>
-                    <p><strong>4.4. অধিকার:</strong> অ্যাক্সেস, সংশোধন, মুছে ফেলা (GDPR)।</p>
-                    <p><strong>4.5. DPO যোগাযোগ:</strong> legal@hotelmol.com</p>
-                    <h2>5. দাবিত্যাগ</h2>
-                    <p>পরিষেবা "যেমন আছে" প্রদান করা হয়।</p>
-                    <h2>6. প্রশাসনের অধিকার</h2>
-                    <p>আমরা পরিষেবা সংশোধন করতে পারি এবং লঙ্ঘনের জন্য অ্যাক্সেস সীমাবদ্ধ করতে পারি।</p>
-                    <h2>7. দায়</h2>
-                    <p>ব্যবহারকারীরা তাদের সামগ্রীর জন্য দায়ী।</p>
-                    <h2>8. বিরোধ</h2>
-                    <p>প্রশাসনের এখতিয়ার দ্বারা শাসিত। বাধ্যতামূলক প্রাক-বিচার নিষ্পত্তি (10 দিন)।</p>
-                    <h2>9. সমাপ্তি</h2>
-                    <p>অ্যাকাউন্ট মুছে ফেলা পর্যন্ত বৈধ।</p>
-                    <h2>10. যোগাযোগ</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. ইমেল: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'ar': {
-                name: "العربية", dir: "rtl", tocTitle: "المحتويات", title: "اتفاقية المستخدم", subtitle: "منصة ROOMIE", date: "آخر تحديث: 15 يناير 2026",
-                body: `
-                    <h2>1. أحكام عامة</h2>
-                    <p><strong>1.1.</strong> تنظم هذه الاتفاقية استخدام موقع Roomie وتطبيق الهاتف والخدمات.</p>
-                    <p><strong>1.2. عرض عام.</strong> يعتبر استخدام الخدمة قبولاً. لا يعني القبول الموافقة التلقائية على اللائحة العامة لحماية البيانات (GDPR) للتسويق.</p>
-                    <p><strong>1.3. التغييرات.</strong> يجوز لنا تعديل هذه الاتفاقية. سيتم الإخطار بالتغييرات الجوهرية.</p>
-                    <h2>2. حقوق الضيف</h2>
-                    <p><strong>2.1. الترخيص.</strong> حق غير حصري لعرض المحتوى للاستخدام الشخصي فقط.</p>
-                    <p><strong>2.2. ممنوع استخراج البيانات.</strong> يحظر تماماً جمع البيانات الآلي (الروبوتات).</p>
-                    <p><strong>2.3. الخصوصية.</strong> يتم تسجيل الإجراءات وفقاً لسياسة الخصوصية الخاصة بنا.</p>
-                    <h2>3. ملفات تعريف الارتباط والتتبع</h2>
-                    <p><strong>3.1.</strong> تستخدم للأمان والوظائف والتحليلات.</p>
-                    <p><strong>3.2. الأنواع:</strong> ضرورية للغاية، وظيفية، تسويقية (بموافقة فقط).</p>
-                    <p><strong>3.3.</strong> الإدارة عبر "إعدادات الخصوصية". يطلب التجديد كل 12 شهراً.</p>
-                    <h2>4. حماية البيانات</h2>
-                    <p><strong>4.1.</strong> تخضع لسياسة الخصوصية.</p>
-                    <p><strong>4.2.</strong> النقل عبر الحدود محمي بموجب البنود التعاقدية القياسية (SCC).</p>
-                    <p><strong>4.3. الاحتفاظ:</strong> السجلات ~12 شهراً.</p>
-                    <p><strong>4.4. الحقوق:</strong> الوصول، التصحيح، المسح (GDPR).</p>
-                    <p><strong>4.5. جهة اتصال DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. إخلاء المسؤولية</h2>
-                    <p>يتم تقديم الخدمة "كما هي". نحن لسنا مسؤولين عن الأعطال الخارجة عن السيطرة.</p>
-                    <h2>6. حقوق الإدارة</h2>
-                    <p>يجوز لنا تعديل الخدمة وتقييد الوصول في حال الانتهاكات.</p>
-                    <h2>7. المسؤولية</h2>
-                    <p>المستخدمون مسؤولون عن محتواهم. نحن لسنا مسؤولين عن أطراف ثالثة.</p>
-                    <h2>8. النزاعات</h2>
-                    <p>تخضع لاختصاص الإدارة. تسوية إلزامية قبل المحاكمة (10 أيام).</p>
-                    <h2>9. الإنهاء</h2>
-                    <p>سارية حتى حذف الحساب.</p>
-                    <h2>10. جهات الاتصال</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. البريد الإلكتروني: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'id': {
-                name: "Bahasa Indonesia", dir: "ltr", tocTitle: "Daftar Isi", title: "PERJANJIAN PENGGUNA", subtitle: "PLATFORM ROOMIE", date: "Terakhir Diperbarui: 15 Januari 2026",
-                body: `
-                    <h2>1. KETENTUAN UMUM</h2>
-                    <p><strong>1.1.</strong> Perjanjian ini mengatur penggunaan situs web dan layanan Roomie.</p>
-                    <p><strong>1.2. Penawaran Publik.</strong> Penggunaan layanan dianggap sebagai penerimaan. Tidak menyiratkan persetujuan GDPR otomatis untuk pemasaran.</p>
-                    <p><strong>1.3. Perubahan.</strong> Kami dapat mengubah Perjanjian ini. Perubahan signifikan akan diberitahukan.</p>
-                    <h2>2. HAK TAMU</h2>
-                    <p><strong>2.1. Lisensi.</strong> Hak non-eksklusif untuk melihat konten hanya untuk penggunaan pribadi.</p>
-                    <p><strong>2.2. Dilarang Scraping.</strong> Pengumpulan data otomatis (bot) sangat dilarang.</p>
-                    <h2>3. COOKIE & PELACAKAN</h2>
-                    <p><strong>3.1.</strong> Digunakan untuk keamanan dan analitik.</p>
-                    <p><strong>3.2. Jenis:</strong> Sangat Diperlukan, Fungsional, Pemasaran (hanya dengan persetujuan).</p>
-                    <p><strong>3.3.</strong> Kelola melalui "Pengaturan Privasi".</p>
-                    <h2>4. PERLINDUNGAN DATA</h2>
-                    <p><strong>4.1.</strong> Diatur oleh Kebijakan Privasi.</p>
-                    <p><strong>4.2.</strong> Transfer lintas batas dilindungi oleh SCC.</p>
-                    <p><strong>4.3. Retensi:</strong> Log ~12 bulan.</p>
-                    <p><strong>4.4. Hak:</strong> Akses, perbaikan, penghapusan (GDPR).</p>
-                    <p><strong>4.5. Kontak DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. PENAFIAN</h2>
-                    <p>Layanan disediakan "sebagaimana adanya".</p>
-                    <h2>6. HAK ADMINISTRASI</h2>
-                    <p>Kami dapat memodifikasi Layanan dan membatasi akses jika terjadi pelanggaran.</p>
-                    <h2>7. KEWAJIBAN</h2>
-                    <p>Pengguna bertanggung jawab atas konten mereka.</p>
-                    <h2>8. SENGKETA</h2>
-                    <p>Diatur oleh yurisdiksi Administrasi. Penyelesaian pra-persidangan wajib (10 hari).</p>
-                    <h2>9. PENGHENTIAN</h2>
-                    <p>Berlaku hingga penghapusan akun.</p>
-                    <h2>10. KONTAK</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'vi': {
-                name: "Tiếng Việt", dir: "ltr", tocTitle: "Mục lục", title: "THỎA THUẬN NGƯỜI DÙNG", subtitle: "NỀN TẢNG ROOMIE", date: "Cập nhật lần cuối: 15 tháng 1 năm 2026",
-                body: `
-                    <h2>1. QUY ĐỊNH CHUNG</h2>
-                    <p><strong>1.1.</strong> Thỏa thuận này quy định việc sử dụng trang web và dịch vụ của Roomie.</p>
-                    <p><strong>1.2. Chào bán công khai.</strong> Sử dụng dịch vụ được coi là chấp nhận. Không ngụ ý sự đồng ý tự động của GDPR cho tiếp thị.</p>
-                    <p><strong>1.3. Thay đổi.</strong> Chúng tôi có thể sửa đổi Thỏa thuận này. Những thay đổi quan trọng sẽ được thông báo.</p>
-                    <h2>2. QUYỀN CỦA KHÁCH</h2>
-                    <p><strong>2.1. Giấy phép.</strong> Quyền không độc quyền xem nội dung chỉ cho mục đích cá nhân.</p>
-                    <p><strong>2.2. Cấm thu thập dữ liệu.</strong> Nghiêm cấm thu thập dữ liệu tự động (bot).</p>
-                    <h2>3. COOKIE & THEO DÕI</h2>
-                    <p><strong>3.1.</strong> Sử dụng cho bảo mật và phân tích.</p>
-                    <p><strong>3.2. Loại:</strong> Cực kỳ cần thiết, Chức năng, Tiếp thị (chỉ khi có sự đồng ý).</p>
-                    <p><strong>3.3.</strong> Quản lý qua "Cài đặt quyền riêng tư".</p>
-                    <h2>4. BẢO VỆ DỮ LIỆU</h2>
-                    <p><strong>4.1.</strong> Được quy định bởi Chính sách quyền riêng tư.</p>
-                    <p><strong>4.2.</strong> Chuyển dữ liệu qua biên giới được bảo vệ bởi SCC.</p>
-                    <p><strong>4.3. Lưu trữ:</strong> Nhật ký ~12 tháng.</p>
-                    <p><strong>4.4. Quyền:</strong> Truy cập, sửa chữa, xóa (GDPR).</p>
-                    <p><strong>4.5. Liên hệ DPO:</strong> legal@hotelmol.com</p>
-                    <h2>5. TỪ CHỐI TRÁCH NHIỆM</h2>
-                    <p>Dịch vụ được cung cấp "nguyên trạng".</p>
-                    <h2>6. QUYỀN QUẢN TRỊ</h2>
-                    <p>Chúng tôi có thể sửa đổi Dịch vụ và hạn chế quyền truy cập nếu vi phạm.</p>
-                    <h2>7. TRÁCH NHIỆM PHÁP LÝ</h2>
-                    <p>Người dùng chịu trách nhiệm về nội dung của họ.</p>
-                    <h2>8. TRANH CHẤP</h2>
-                    <p>Được quy định bởi thẩm quyền của Quản trị viên. Giải quyết bắt buộc trước khi xét xử (10 ngày).</p>
-                    <h2>9. CHẤM DỨT</h2>
-                    <p>Có hiệu lực cho đến khi xóa tài khoản.</p>
-                    <h2>10. LIÊN HỆ</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. Email: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'tr': {
-                name: "Türkçe", dir: "ltr", tocTitle: "İçindekiler", title: "KULLANICI SÖZLEŞMESİ", subtitle: "ROOMIE PLATFORMU", date: "Son Güncelleme: 15 Ocak 2026",
-                body: `
-                    <h2>1. GENEL HÜKÜMLER</h2>
-                    <p><strong>1.1.</strong> Bu Sözleşme, Roomie web sitesi ve hizmetlerinin kullanımını düzenler.</p>
-                    <p><strong>1.2. Halka Arz.</strong> Hizmetin kullanımı kabul anlamına gelir. Pazarlama için otomatik GDPR onayı anlamına gelmez.</p>
-                    <p><strong>1.3. Değişiklikler.</strong> Bu Sözleşmeyi değiştirebiliriz. Önemli değişiklikler bildirilecektir.</p>
-                    <h2>2. MİSAFİR HAKLARI</h2>
-                    <p><strong>2.1. Lisans.</strong> İçeriği yalnızca kişisel kullanım için görüntüleme hakkı (münhasır olmayan).</p>
-                    <p><strong>2.2. Veri Kazıma Yasak.</strong> Otomatik veri toplama (botlar) kesinlikle yasaktır.</p>
-                    <h2>3. ÇEREZLER VE İZLEME</h2>
-                    <p><strong>3.1.</strong> Güvenlik ve analiz için kullanılır.</p>
-                    <p><strong>3.2. Türler:</strong> Kesinlikle Gerekli, İşlevsel, Pazarlama (yalnızca rıza ile).</p>
-                    <p><strong>3.3.</strong> "Gizlilik Ayarları" üzerinden yönetin.</p>
-                    <h2>4. VERİ KORUMA</h2>
-                    <p><strong>4.1.</strong> Gizlilik Politikası ile yönetilir.</p>
-                    <p><strong>4.2.</strong> SCC'ler tarafından korunan sınır ötesi transferler.</p>
-                    <p><strong>4.3. Saklama:</strong> Günlükler ~12 ay.</p>
-                    <p><strong>4.4. Haklar:</strong> Erişim, düzeltme, silme (GDPR).</p>
-                    <p><strong>4.5. DPO İletişim:</strong> legal@hotelmol.com</p>
-                    <h2>5. SORUMLULUK REDDİ</h2>
-                    <p>Hizmet "olduğu gibi" sağlanır.</p>
-                    <h2>6. YÖNETİM HAKLARI</h2>
-                    <p>Hizmeti değiştirebilir ve ihlal durumunda erişimi kısıtlayabiliriz.</p>
-                    <h2>7. SORUMLULUK</h2>
-                    <p>Kullanıcılar içeriklerinden sorumludur.</p>
-                    <h2>8. ANLAŞMAZLIKLAR</h2>
-                    <p>Yönetimin yargı yetkisine tabidir. Zorunlu mahkeme öncesi uzlaşma (10 gün).</p>
-                    <h2>9. FESİH</h2>
-                    <p>Hesap silinene kadar geçerlidir.</p>
-                    <h2>10. İLETİŞİM</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. E-posta: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'ko': {
-                name: "한국어", dir: "ltr", tocTitle: "목차", title: "사용자 계약", subtitle: "ROOMIE 플랫폼", date: "최종 업데이트: 2026년 1월 15일",
-                body: `
-                    <h2>1. 일반 조항</h2>
-                    <p><strong>1.1.</strong> 본 계약은 Roomie 웹사이트 및 서비스 이용을 규정합니다.</p>
-                    <p><strong>1.2. 공개 제안.</strong> 서비스 이용은 수락으로 간주됩니다. 마케팅에 대한 자동 GDPR 동의를 의미하지 않습니다.</p>
-                    <p><strong>1.3. 변경.</strong> 당사는 본 계약을 수정할 수 있습니다. 중대한 변경 사항은 통지됩니다.</p>
-                    <h2>2. 게스트 권리</h2>
-                    <p><strong>2.1. 라이선스.</strong> 개인적 용도로만 콘텐츠를 볼 수 있는 비독점적 권리.</p>
-                    <p><strong>2.2. 스크래핑 금지.</strong> 자동 데이터 수집(봇)은 엄격히 금지됩니다.</p>
-                    <h2>3. 쿠키 및 추적</h2>
-                    <p><strong>3.1.</strong> 보안 및 분석에 사용됩니다.</p>
-                    <p><strong>3.2. 유형:</strong> 필수, 기능, 마케팅(동의 시에만).</p>
-                    <p><strong>3.3.</strong> "개인정보 설정"을 통해 관리하십시오.</p>
-                    <h2>4. 데이터 보호</h2>
-                    <p><strong>4.1.</strong> 개인정보 처리방침의 적용을 받습니다.</p>
-                    <p><strong>4.2.</strong> SCC에 의해 보호되는 국경 간 전송.</p>
-                    <p><strong>4.3. 보존:</strong> 로그 약 12개월.</p>
-                    <p><strong>4.4. 권리:</strong> 액세스, 정정, 삭제(GDPR).</p>
-                    <p><strong>4.5. DPO 연락처:</strong> legal@hotelmol.com</p>
-                    <h2>5. 면책 조항</h2>
-                    <p>서비스는 "있는 그대로" 제공됩니다.</p>
-                    <h2>6. 관리 권한</h2>
-                    <p>당사는 서비스를 수정하고 위반 시 액세스를 제한할 수 있습니다.</p>
-                    <h2>7. 책임</h2>
-                    <p>사용자는 자신의 콘텐츠에 대해 책임을 집니다.</p>
-                    <h2>8. 분쟁</h2>
-                    <p>관리자의 관할권에 따릅니다. 필수 재판 전 합의(10일).</p>
-                    <h2>9. 종료</h2>
-                    <p>계정 삭제 시까지 유효합니다.</p>
-                    <h2>10. 연락처</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. 이메일: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
-            },
-            'pl': {
-                name: "Polski", dir: "ltr", tocTitle: "Spis treści", title: "UMOWA UŻYTKOWNIKA", subtitle: "PLATFORMA ROOMIE", date: "Ostatnia aktualizacja: 15 stycznia 2026",
-                body: `
-                    <h2>1. POSTANOWIENIA OGÓLNE</h2>
-                    <p><strong>1.1.</strong> Niniejsza Umowa reguluje korzystanie z witryny i usług Roomie.</p>
-                    <p><strong>1.2. Oferta Publiczna.</strong> Korzystanie oznacza akceptację. Nie oznacza automatycznej zgody RODO na marketing.</p>
-                    <p><strong>1.3. Zmiany.</strong> Możemy zmienić niniejszą Umowę. Istotne zmiany zostaną ogłoszone.</p>
-                    <h2>2. PRAWA GOŚCIA</h2>
-                    <p><strong>2.1. Licencja.</strong> Niewyłączne prawo do przeglądania treści wyłącznie do użytku osobistego.</p>
-                    <p><strong>2.2. Zakaz Scrapingu.</strong> Zautomatyzowane zbieranie danych (boty) jest surowo zabronione.</p>
-                    <h2>3. PLIKI COOKIE I ŚLEDZENIE</h2>
-                    <p><strong>3.1.</strong> Używane do bezpieczeństwa i analityki.</p>
-                    <p><strong>3.2. Typy:</strong> Ściśle niezbędne, Funkcjonalne, Marketingowe (tylko za zgodą).</p>
-                    <p><strong>3.3.</strong> Zarządzaj w "Ustawieniach prywatności".</p>
-                    <h2>4. OCHRONA DANYCH</h2>
-                    <p><strong>4.1.</strong> Regulowana przez Politykę Prywatności.</p>
-                    <p><strong>4.2.</strong> Transfery transgraniczne chronione przez SCC.</p>
-                    <p><strong>4.3. Przechowywanie:</strong> Logi ~12 miesięcy.</p>
-                    <p><strong>4.4. Prawa:</strong> Dostęp, sprostowanie, usunięcie (RODO).</p>
-                    <p><strong>4.5. Kontakt IOD:</strong> legal@hotelmol.com</p>
-                    <h2>5. WYŁĄCZENIE ODPOWIEDZIALNOŚCI</h2>
-                    <p>Usługa świadczona "tak jak jest".</p>
-                    <h2>6. PRAWA ADMINISTRACJI</h2>
-                    <p>Możemy modyfikować Usługę i ograniczać dostęp w przypadku naruszeń.</p>
-                    <h2>7. ODPOWIEDZIALNOŚĆ</h2>
-                    <p>Użytkownicy odpowiadają za swoje treści.</p>
-                    <h2>8. SPORY</h2>
-                    <p>Podlega jurysdykcji Administracji. Obowiązkowa ugoda przedsądowa (10 dni).</p>
-                    <h2>9. ROZWIĄZANIE</h2>
-                    <p>Ważne do usunięcia konta.</p>
-                    <h2>10. KONTAKT</h2>
-                    <p>LLC "hotelmol", Vozdvizhenskaya 40. E-mail: <a href="mailto:legal@hotelmol.com" class="text-indigo-600">legal@hotelmol.com</a></p>
-                `
+        // --- A. Auto-Detect and Translate ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if user has already manually selected a language via Google's cookie
+            const cookies = document.cookie;
+            if (cookies.indexOf('googtrans=') === -1) {
+                // If no cookie, try to detect browser language
+                const userLang = navigator.language || navigator.userLanguage; // e.g., "en-US"
+                const langCode = userLang.split('-')[0]; // e.g., "en"
+
+                // If user is NOT Russian, set the cookie to auto-translate from RU to UserLang
+                if (langCode !== 'ru') {
+                    // Cookie format for Google Translate: /source/target
+                    // We set it for the current path and domain
+                    document.cookie = `googtrans=/ru/${langCode}; path=/; domain=${window.location.hostname}`;
+                    document.cookie = `googtrans=/ru/${langCode}; path=/`; 
+                    // Reload to apply translation immediately
+                    // Note: In some environments (local files), cookies might not persist or trigger reload loops.
+                    // We add a safety flag in sessionStorage to prevent loops.
+                    if (!sessionStorage.getItem('gt_auto_redirect')) {
+                         sessionStorage.setItem('gt_auto_redirect', 'true');
+                         window.location.reload();
+                    }
+                }
             }
-        };
-
-        // --- 2. Logic & Rendering ---
-
-        const langDropdown = document.getElementById('lang-dropdown');
-        const langLabel = document.getElementById('current-lang-label');
-        const headerArea = document.getElementById('header-area');
-        const contentArea = document.getElementById('content-area');
-        const tocContainer = document.getElementById('toc-desktop');
-        const tocHeader = document.getElementById('toc-header');
-
-        // Dropdown Logic
-        const dropdownList = langDropdown.querySelector('div');
-        Object.keys(contentData).forEach(lang => {
-            const btn = document.createElement('button');
-            btn.className = "text-gray-700 block px-4 py-2.5 text-sm w-full text-left hover:bg-indigo-50 hover:text-indigo-700 transition-colors";
-            btn.textContent = contentData[lang].name;
-            btn.onclick = () => setLanguage(lang);
-            dropdownList.appendChild(btn);
         });
 
-        function toggleDropdown(event) {
-            if (event) event.stopPropagation();
-            langDropdown.classList.toggle('hidden');
-        }
+        // --- B. Generate Table of Contents (TOC) Dynamically ---
+        const tocContainer = document.getElementById('toc-desktop');
+        const sections = document.querySelectorAll('section h2');
 
-        window.onclick = function(event) {
-            // Updated to be more robust: close if clicking anywhere except inside the button or dropdown itself
-            if (!event.target.closest('#menu-button') && !event.target.closest('#lang-dropdown')) {
-                if (!langDropdown.classList.contains('hidden')) {
-                    langDropdown.classList.add('hidden');
-                }
-            }
-        }
-
-        // --- Core Rendering Function ---
-        function setLanguage(langCode) {
-            // Fallback logic
-            if (!contentData[langCode]) {
-                const prefix = langCode.split('-')[0];
-                langCode = contentData[prefix] ? prefix : 'en';
-            }
-            const data = contentData[langCode];
-            const bodyContent = data.body;
-            const isRTL = data.dir === 'rtl';
-
-            // 1. Update Globals
-            document.documentElement.lang = langCode;
-            document.documentElement.dir = data.dir; // Set dir on HTML tag for proper scrollbar placement
-            document.body.dir = data.dir;
-            langLabel.textContent = data.name;
-
-            // 2. Render Header
-            headerArea.innerHTML = `
-                <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-500 uppercase bg-indigo-50 rounded-full">
-                    Document
-                </div>
-                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 tracking-tight mb-2">
-                    ${data.title}
-                </h1>
-                <p class="text-xl text-gray-500 font-medium mb-6">${data.subtitle}</p>
-                <div class="flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-400">
-                    <i class="far fa-clock"></i>
-                    <span>${data.date}</span>
-                </div>
-            `;
-
-            // 3. Render Body (The "Cardification" Process)
-            contentArea.innerHTML = '';
+        sections.forEach((h2) => {
+            const sectionId = h2.parentElement.id;
+            const link = document.createElement('a');
+            link.href = `#${sectionId}`;
+            link.innerText = h2.innerText; 
+            link.className = "block py-2 pl-3 pr-4 text-sm text-gray-500 border-l-2 border-transparent hover:text-indigo-600 hover:bg-gray-50 hover:border-gray-300 transition-all rounded-r-md truncate text-left";
             
-            // Create a temporary div to parse the HTML string
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = bodyContent;
-            
-            let currentCard = null;
-            let sectionCount = 0;
+            link.onclick = (e) => {
+                e.preventDefault();
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Update active state
+                document.querySelectorAll('#toc-desktop a').forEach(a => a.classList.remove('toc-active'));
+                link.classList.add('toc-active');
+            };
 
-            Array.from(tempDiv.children).forEach(child => {
-                if (child.tagName === 'H2') {
-                    // Start new card
-                    sectionCount++;
-                    const anchorId = `section-${sectionCount}`;
-                    
-                    currentCard = document.createElement('section');
-                    currentCard.id = anchorId;
-                    currentCard.className = "bg-white p-6 md:p-8 rounded-2xl shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] border border-gray-100 transition-all hover:shadow-lg";
-                    
-                    // Style H2
-                    child.className = "text-xl md:text-2xl font-bold text-gray-900 mb-6 pb-4 border-b border-gray-100 flex items-center";
-                    
-                    currentCard.appendChild(child);
-                    contentArea.appendChild(currentCard);
-                } else if (currentCard) {
-                    // Style content inside card
-                    if (child.tagName === 'P') {
-                        child.className = "text-gray-600 leading-relaxed mb-4 text-base md:text-lg";
-                    }
-                    if (child.tagName === 'UL') {
-                        child.className = "list-none space-y-3 mb-6 bg-gray-50 p-5 rounded-xl border border-gray-100";
-                        // Add icons to list items via JS
-                        Array.from(child.children).forEach(li => {
-                            li.className = "relative px-6 text-gray-700 leading-relaxed";
-                            // Adjust icon position based on direction
-                            const iconPos = isRTL ? 'right-0' : 'left-0';
-                            li.innerHTML = `<i class="fas fa-check text-indigo-500 absolute ${iconPos} top-1.5 text-xs"></i><span>${li.innerHTML}</span>`;
-                        });
-                    }
-                    currentCard.appendChild(child);
-                } else {
-                    // Orphan content (intro without H2)
-                    if (!currentCard) {
-                        currentCard = document.createElement('div');
-                        currentCard.className = "bg-white p-6 rounded-2xl shadow-sm mb-6";
-                        contentArea.appendChild(currentCard);
-                    }
-                    currentCard.appendChild(child);
-                }
-            });
+            tocContainer.appendChild(link);
+        });
 
-            // 4. Generate Table of Contents
-            generateTOC(data.tocTitle || "Contents");
-            
-            // Re-trigger fade
-            contentArea.classList.remove('fade-in');
-            void contentArea.offsetWidth;
-            contentArea.classList.add('fade-in');
-            
-            langDropdown.classList.add('hidden');
-        }
-
-        function generateTOC(title) {
-            tocHeader.innerText = title;
-            // Clear existing links except header
-            while (tocContainer.children.length > 1) {
-                tocContainer.removeChild(tocContainer.lastChild);
-            }
-
-            const sections = contentArea.querySelectorAll('section h2');
-            const isRTL = document.documentElement.dir === 'rtl';
-            
-            sections.forEach((h2) => {
-                const sectionId = h2.parentElement.id;
-                const link = document.createElement('a');
-                link.href = `#${sectionId}`;
-                link.innerText = h2.innerText; 
-                
-                // Base classes
-                let classes = "block py-2 text-sm text-gray-500 hover:text-indigo-600 hover:bg-gray-50 hover:border-gray-300 transition-all truncate border-transparent ";
-                
-                // Directional borders and padding
-                if (isRTL) {
-                    classes += "border-r-2 pr-3 pl-4 rounded-l-md text-right";
-                } else {
-                    classes += "border-l-2 pl-3 pr-4 rounded-r-md text-left";
-                }
-                
-                link.className = classes;
-                
-                // Smooth scroll intercept
-                link.onclick = (e) => {
-                    e.preventDefault();
-                    document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Set active state manually
-                    document.querySelectorAll('#toc-desktop a').forEach(a => a.classList.remove('toc-active'));
-                    link.classList.add('toc-active');
-                };
-
-                tocContainer.appendChild(link);
-            });
-        }
-
-        // --- 3. Intersection Observer for TOC ---
-        // Highlights the sidebar link as you scroll
+        // --- C. Scroll Spy for TOC ---
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.id;
                     document.querySelectorAll('#toc-desktop a').forEach(link => {
                         link.classList.remove('toc-active');
+                        // Match href="#id"
                         if (link.getAttribute('href') === `#${id}`) {
                             link.classList.add('toc-active');
                         }
                     });
                 }
             });
-        }, { rootMargin: '-20% 0px -70% 0px' }); // Trigger when section is near top
+        }, { rootMargin: '-20% 0px -70% 0px' });
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            // Check scroll updates after rendering
-            const config = { childList: true, subtree: true };
-            const callback = function(mutationsList, observer) {
-                const sections = document.querySelectorAll('section');
-                sections.forEach(s => window.observer.observe(s)); // Use global obs
-            };
-            const obs = new MutationObserver(callback);
-            obs.observe(contentArea, config);
-            window.observer = observer;
-
-            // Initial Load
-            let userLang = navigator.language || navigator.userLanguage; 
-            // Better matching logic
-            if (userLang.toLowerCase().includes('hk') || userLang.toLowerCase().includes('yue')) userLang = 'zh-HK';
-            else if (userLang.startsWith('zh')) userLang = 'zh'; 
-            else userLang = userLang.split('-')[0];
-            
-            setLanguage(userLang);
-        });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
 
     </script>
 </body>
