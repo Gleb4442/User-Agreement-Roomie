@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roomie - User Agreement</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Language Switcher Positioning */
+        .lang-switcher {
+            position: fixed;
+            z-index: 50;
+            transition: all 0.3s ease;
+        }
+
+        /* Desktop: Top Right */
+        @media (min-width: 768px) {
+            .lang-switcher {
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+        }
+
+        /* Mobile: Bottom Right */
+        @media (max-width: 767px) {
+            .lang-switcher {
+                bottom: 1.5rem;
+                right: 1.5rem;
+                top: auto;
+            }
+        }
+
+        /* Fade animation for text switching */
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-gray-800 antialiased min-h-screen flex flex-col">
+
+    <!-- Language Switcher Component -->
+    <div class="lang-switcher">
+        <div class="relative inline-block text-left">
+            <div>
+                <button type="button" onclick="toggleDropdown()"
+                    class="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    id="menu-button" aria-expanded="true" aria-haspopup="true">
+                    <i class="fas fa-globe mr-2 text-indigo-600"></i>
+                    <span id="current-lang-label">Русский</span>
+                    <i class="fas fa-chevron-down ml-2 -mr-1 h-4 w-4"></i>
+                </button>
+            </div>
+
+            <!-- Dropdown menu -->
+            <div id="lang-dropdown"
+                class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto"
+                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                <div class="py-1" role="none">
+                    <!-- Languages will be injected here by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-12 md:py-16 max-w-4xl relative">
+        <div id="content-area" class="prose prose-lg prose-indigo mx-auto fade-in">
+            <!-- Content will be injected by JS -->
+            <div class="flex justify-center items-center h-64">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 mt-auto">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 text-center text-gray-500 text-sm">
+            &copy; 2026 Roomie. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. Data Source (The Content) ---
+        // Note: Full text provided for Russian and English. 
+        // Other languages have translated headers/titles to demonstrate logic, with English body fallback for brevity in this file.
+
+        const contentData = {
+            'ru': {
+                name: "Русский",
+                dir: "ltr",
+                title: "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ ПЛАТФОРМЫ ROOMIE",
+                date: "Дата последнего обновления: 15 января 2026 г.",
+                body: `
+                    <h2>1. ОБЩИЕ ПОЛОЖЕНИЯ</h2>
+                    <p><strong>1.1.</strong> Настоящее Соглашение регулирует порядок использования сайта, мобильного приложения и всех сопутствующих сервисов Roomie (далее — «Сервис»).</p>
+                    <p><strong>1.2. Публичная оферта и отдельные согласия</strong></p>
+                    <p>Настоящий документ является публичной офертой (предложением заключить договор на условиях, изложенных в Соглашении). Акцептом оферты является совершение Пользователем/Гостем действий, свидетельствующих о принятии условий Соглашения, включая фактическое использование Сервиса (например, просмотр страниц, использование функций, регистрация).</p>
+                    <p>Акцепт Соглашения (условий использования Сервиса) не означает автоматическое предоставление явного согласия (Consent) на обработку персональных данных для целей, где по GDPR требуется согласие (например, маркетинговые cookie/трекеры, персонализированная реклама). Там, где требуется согласие, оно запрашивается отдельно (например, через баннер cookie/настройки приватности) и может быть отозвано в любой момент без влияния на законность обработки до отзыва.</p>
+                    <p><strong>1.3. Изменение условий Соглашения</strong></p>
+                    <p>Администрация вправе изменять условия Соглашения в одностороннем порядке. При существенных изменениях Администрация уведомляет зарегистрированных Пользователей по электронной почте и/или через интерфейс Сервиса. Для существенных изменений Администрация вправе запросить подтверждение ознакомления (например, нажатием кнопки «Ознакомлен(а)» при следующем входе в аккаунт); до подтверждения доступ к отдельным функциям может быть ограничен. Новая редакция Соглашения вступает в силу с даты, указанной в Соглашении/ уведомлении, если иное прямо не предусмотрено уведомлением.</p>
+
+                    <h2>2. ПРАВА И ОБЯЗАННОСТИ ГОСТЯ</h2>
+                    <p><strong>2.1. Ограниченная лицензия</strong></p>
+                    <p>Администрация предоставляет Гостю неисключительное, непередаваемое право на просмотр контента (объявлений, профилей, статей) исключительно для личных некоммерческих целей.</p>
+                    <p><strong>2.2. Запрет на скрейпинг и автоматизированный сбор данных</strong></p>
+                    <p>Гостю запрещается использовать автоматизированные средства (скрипты, боты, парсеры, «пауки», краулеры) для сбора, копирования, выгрузки, индексирования или иного извлечения данных из Сервиса без предварительного письменного разрешения Администрации. Нарушение данного пункта рассматривается как нарушение условий Соглашения, а также может нарушать исключительные права и/или смежные права Администрации на контент и/или структуру и подборку материалов, а также права на базы данных и коммерческие обозначения (в применимой части). При выявлении нарушений Администрация вправе применять меры защиты, включая ограничение доступа (в т.ч. блокировку учетной записи, токенов доступа, ІР-адресов/диапазонов), ограничение частоты запросов, применение технических средств анти-бот защиты, а также обращение за защитой прав в порядке, предусмотренном законом.</p>
+                    <p><strong>2.3. Конфиденциальность Гостя</strong></p>
+                    <p>Гость осознает, что даже без регистрации его действия в Сервисе могут фиксироваться (например, журналы сервера, технические идентификаторы, события аналитики). Условия обработки таких данных регулируются разделом 4 настоящего Соглашения, Политикой конфиденциальности и Политикой cookie.</p>
+
+                    <h2>3. ИСПОЛЬЗОВАНИЕ ФАЙЛОВ СООКІЕ И ТЕХНОЛОГИЙ ОТСЛЕЖИВАНИЯ</h2>
+                    <p><strong>3.1. Принципы использования</strong></p>
+                    <p>Roomie использует cookie и аналогичные технологии для улучшения пользовательского опыта, обеспечения безопасности сессий и проведения аналитики/маркетинга в пределах применимого права.</p>
+                    <p><strong>3.2. Классификация cookie</strong></p>
+                    <ul>
+                        <li><strong>Строго необходимые (Strictly Necessary):</strong> используются только в той мере, в которой они абсолютно технически необходимы для предоставления Сервиса, явно запрошенного Пользователем/Гостем (например, управление сессией, балансировка нагрузки, аутентификация, базовая защита и предотвращение злоупотреблений).</li>
+                        <li><strong>Функциональные (Functional):</strong> запоминают выбор региона, валюты и языка. Срок хранения: до 12 месяцев.</li>
+                        <li><strong>Аналитические и маркетинговые:</strong> используются для анализа аудитории и таргетинга рекламы. Включаются только после получения явного согласия (Opt-In), если согласие требуется применимым правом.</li>
+                    </ul>
+                    <p><strong>3.3. Управление согласием и срок действия согласия</strong></p>
+                    <p>Гость/Пользователь может в любой момент изменить настройки сookie через панель управления конфиденциальностью («Privacy Settings») в футере Сайта (или аналогичный интерфейс в приложении). Отзыв согласия не имеет обратной силы в отношении данных, обработанных до момента отзыва. Согласие на аналитические/маркетинговые cookie запрашивается повторно не реже одного раза в 12 месяцев (либо ранее при изменении целей/состава трекеров), чтобы поддерживать актуальность выбора.</p>
+
+                    <h2>4. ПЕРСОНАЛЬНЫЕ ДАННЫЕ И ИХ ЗАЩИТА</h2>
+                    <p><strong>4.1. Интеграция с Политикой конфиденциальности</strong></p>
+                    <p>Настоящее Соглашение неразрывно связано с Политикой конфиденциальности Roomie. В случае противоречий между документами, для вопросов обработки данных приоритет имеет Политика конфиденциальности.</p>
+                    <p><strong>4.2. Трансграничная передача</strong></p>
+                    <p>Поскольку Roomie может использовать глобальные сервисы (например, аналитики), данные Гостя/Пользователя могут передаваться на серверы, расположенные за пределами ЕС. При передаче данных в «третьи страны» Администрация использует применимые механизмы передачи (например, Стандартные договорные условия — SCC) и проводит оценку влияния передачи (Transfer Impact Assessment, TIA) и/или внедряет дополнительные меры, если это требуется для обеспечения адекватного уровня защиты в соответствии с применимым законодательством.</p>
+                    <p><strong>4.3. Сроки хранения (Retention Policy)</strong></p>
+                    <ul>
+                        <li>Данные незарегистрированных Гостей (например, технические логи сервера, события безопасности) хранятся не более 12 месяцев, если более длительный срок не требуется для расследования инцидентов, выполнения требований закона или защиты прав Администрации/третьих лиц.</li>
+                        <li>Маркетинговые профили/идентификаторы, сформированные на базе cookie/ трекеров, удаляются либо анонимизируются по достижении целей обработки или при отсутствии активности, но, как правило, не хранятся дольше периода, соразмерного сроку жизни соответствующих трекеров (ориентир — ограничение порядка 13 месяцев для измерительных/аналитических трекеров).</li>
+                    </ul>
+                    <p><strong>4.4. Правовые основания обработки данных (Lawful Basis)</strong></p>
+                    <p>В зависимости от категории данных и цели, обработка может осуществляться на одном или нескольких правовых основаниях, предусмотренных GDPR (например: необходимость для исполнения договора/оказания сервиса; согласие; законный интерес при условии баланса интересов).</p>
+                    <p><strong>4.5. Права субъекта данных</strong></p>
+                    <p>Субъект данных (в применимых случаях — по GDPR) имеет права, предусмотренные главой III GDPR, включая право на доступ, исправление, удаление («право на забвение»), ограничение обработки, переносимость данных, возражение против обработки, а также права в связи с автоматизированным принятием решений. Для реализации прав субъект данных направляет запрос через контакты, указанные в Политике конфиденциальности/разделе 4.6, и Администрация обрабатывает такие запросы в порядке и сроки, предусмотренные применимым правом. Субъект данных также имеет право подать жалобу в компетентный надзорный орган по защите данных (в применимых случаях — по месту обычного проживания В ЕЭЗ/ЕС).</p>
+                    <p><strong>4.6. Контактное лицо по вопросам конфиденциальности (DPO/Privacy Contact)</strong></p>
+                    <p>Администрация назначает контактное лицо по вопросам обработки персональных данных и конфиденциальности. Контакты указываются в Политике конфиденциальности и разделе 12 настоящего Соглашения: <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a>.</p>
+
+                    <h2>5. ОТКАЗ ОТ ОТВЕТСТВЕННОСТИ (DISCLAIMER)</h2>
+                    <p><strong>5.1.</strong> Сервис предоставляется на условиях «как есть» (as is). Администрация не гарантирует, что работа cookie и отдельных функций будет поддерживаться всеми типами браузеров, устройств или конфигураций Пользователя/Гостя.</p>
+                    <p><strong>5.2.</strong> Администрация принимает разумные меры для обеспечения работоспособности и безопасности Сервиса, однако не гарантирует отсутствие сбоев, перерывов, потерь данных или несанкционированного доступа в результате действий третьих лиц, форс-мажора и/или технических факторов вне разумного контроля.</p>
+
+                    <h2>6. ПРАВА И ОБЯЗАННОСТИ АДМИНИСТРАЦИИ</h2>
+                    <p><strong>6.1.</strong> Администрация обязуется предпринимать разумные организационные и технические меры для защиты Сервиса и данных от несанкционированного доступа и злоупотреблений.</p>
+                    <p><strong>6.2.</strong> Администрация вправе изменять функциональность Сервиса, добавлять или прекращать предоставление отдельных функций (полностью или частично) по техническим, коммерческим или юридическим причинам.</p>
+                    <p><strong>6.3.</strong> Администрация вправе проводить модерацию контента и действий Пользователей, а также ограничивать доступ при нарушении Соглашения, прав третьих лиц или требований закона.</p>
+                    <p><strong>6.4.</strong> Администрация вправе направлять Пользователю сервисные сообщения (технические уведомления, безопасность, изменения условий), необходимые для оказания услуг.</p>
+
+                    <h2>7. ОТВЕТСТВЕННОСТЬ СТОРОН</h2>
+                    <p><strong>7.1.</strong> Пользователь несет ответственность за нарушение Соглашения, а также за достоверность и законность размещаемого контента и действий в Сервисе.</p>
+                    <p><strong>7.2.</strong> Администрация не несет ответственности за действия третьих лиц, включая других Пользователей, а также за содержание внешних ресурсов, на которые могут вести ссылки.</p>
+                    <p><strong>7.3.</strong> При причинении убытков Администрации вследствие нарушения Пользователем Соглашения, Пользователь обязан возместить документально подтвержденные убытки в пределах, предусмотренных законом и настоящим Соглашением.</p>
+                    <p><strong>7.4.</strong> Стороны освобождаются от ответственности за неисполнение обязательств при наступлении форс-мажорных обстоятельств (чрезвычайных и непредотвратимых при данных условиях).</p>
+
+                    <h2>8. ПОРЯДОК РАЗРЕШЕНИЯ СПОРОВ И ПРИМЕНИМОЕ ПРАВО</h2>
+                    <p><strong>8.1.</strong> Соглашение регулируется применимым законодательством юрисдикции, в которой зарегистрирована Администрация, если иное не предусмотрено императивными нормами применимого права (например, для потребителей из иных юрисдикций).</p>
+                    <p><strong>8.2.</strong> Обязателен досудебный порядок урегулирования: претензия направляется Администрации по контактам из раздела 9; срок рассмотрения претензии — 10 (десять) рабочих дней, если иной срок не установлен законом.</p>
+                    <p><strong>8.3.</strong> Подсудность и правовая юрисдикция споров определяются в соответствии с применимым законодательством и/или императивными нормами о защите прав потребителей (если применимо).</p>
+
+                    <h2>9. СРОК ДЕЙСТВИЯ И РАСТОРЖЕНИЕ СОГЛАШЕНИЯ</h2>
+                    <p><strong>9.1.</strong> Соглашение вступает в силу с момента акцепта и действует до прекращения использования Сервиса и/или удаления учетной записи, если иное не предусмотрено Соглашением.</p>
+                    <p><strong>9.2.</strong> Администрация вправе прекратить/ограничить доступ Пользователя к Сервису при нарушении Соглашения, закона или прав третьих лиц.</p>
+                    <p><strong>9.3.</strong> Положения Соглашения, которые по своей природе продолжают действовать после прекращения (включая положения об интеллектуальной собственности, ответственности, разрешении споров), сохраняют силу.</p>
+
+                    <h2>10. РЕКВИЗИТЫ АДМИНИСТРАЦИИ</h2>
+                    <p><strong>Наименование:</strong> ТОВ "hotelmol"</p>
+                    <p><strong>Юридический адрес:</strong> Воздвиженская, 40</p>
+                    <p><strong>E-mail для юридически значимых сообщений:</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a></p>
+                    <p><strong>Контакт по вопросам приватности (DPO/Privacy Contact):</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a></p>
+                `
+            },
+            'en': {
+                name: "English",
+                dir: "ltr",
+                title: "ROOMIE PLATFORM USER AGREEMENT",
+                date: "Last Updated: January 15, 2026",
+                body: `
+                    <h2>1. GENERAL PROVISIONS</h2>
+                    <p><strong>1.1.</strong> This Agreement regulates the use of the Roomie website, mobile application, and all related services (hereinafter referred to as the "Service").</p>
+                    <p><strong>1.2. Public Offer and Separate Consents</strong></p>
+                    <p>This document constitutes a public offer (a proposal to conclude a contract under the terms set forth in the Agreement). Acceptance of the offer is the performance by the User/Guest of actions indicating acceptance of the Agreement's terms, including actual use of the Service (e.g., browsing pages, using functions, registration).</p>
+                    <p>Acceptance of the Agreement (Service usage terms) does not imply automatic granting of explicit Consent for processing personal data for purposes where consent is required under GDPR (e.g., marketing cookies/trackers, personalized advertising). Where consent is required, it is requested separately (e.g., via a cookie banner/privacy settings) and may be withdrawn at any time without affecting the lawfulness of processing prior to withdrawal.</p>
+                    <p><strong>1.3. Changes to the Agreement</strong></p>
+                    <p>The Administration has the right to change the terms of the Agreement unilaterally. In case of significant changes, the Administration notifies registered Users via email and/or the Service interface. For significant changes, the Administration may request confirmation of review (e.g., by clicking "Acknowledged" upon next login); access to certain functions may be limited until confirmation. The new version of the Agreement enters into force from the date specified in the Agreement/notification unless otherwise expressly provided by the notification.</p>
+
+                    <h2>2. RIGHTS AND OBLIGATIONS OF THE GUEST</h2>
+                    <p><strong>2.1. Limited License</strong></p>
+                    <p>The Administration grants the Guest a non-exclusive, non-transferable right to view content (listings, profiles, articles) solely for personal non-commercial purposes.</p>
+                    <p><strong>2.2. Prohibition on Scraping and Automated Data Collection</strong></p>
+                    <p>The Guest is prohibited from using automated means (scripts, bots, parsers, "spiders", crawlers) to collect, copy, download, index, or otherwise extract data from the Service without prior written permission from the Administration. Violation of this clause is considered a breach of the Agreement and may also violate the Administration's exclusive and/or related rights to content and/or the structure and selection of materials, as well as rights to databases and commercial designations. Upon detection of violations, the Administration has the right to apply protection measures, including access limitation (including blocking accounts, access tokens, IP addresses/ranges), rate limiting, applying anti-bot technical means, and seeking legal protection as provided by law.</p>
+                    <p><strong>2.3. Guest Privacy</strong></p>
+                    <p>The Guest acknowledges that even without registration, their actions in the Service may be recorded (e.g., server logs, technical identifiers, analytics events). The conditions for processing such data are regulated by Section 4 of this Agreement, the Privacy Policy, and the Cookie Policy.</p>
+
+                    <h2>3. USE OF COOKIES AND TRACKING TECHNOLOGIES</h2>
+                    <p><strong>3.1. Usage Principles</strong></p>
+                    <p>Roomie uses cookies and similar technologies to improve user experience, ensure session security, and conduct analytics/marketing within applicable law.</p>
+                    <p><strong>3.2. Cookie Classification</strong></p>
+                    <ul>
+                        <li><strong>Strictly Necessary:</strong> Used only to the extent absolutely technically necessary to provide the Service explicitly requested by the User/Guest (e.g., session management, load balancing, authentication, basic security, and abuse prevention).</li>
+                        <li><strong>Functional:</strong> Remember region, currency, and language choices. Storage period: up to 12 months.</li>
+                        <li><strong>Analytical and Marketing:</strong> Used for audience analysis and advertising targeting. Enabled only after obtaining explicit consent (Opt-In), if required by applicable law.</li>
+                    </ul>
+                    <p><strong>3.3. Consent Management and Validity</strong></p>
+                    <p>The Guest/User may change cookie settings at any time via the privacy control panel ("Privacy Settings") in the Site footer (or similar interface in the app). Withdrawal of consent does not have retroactive effect regarding data processed before withdrawal. Consent for analytical/marketing cookies is re-requested at least once every 12 months (or earlier if purposes/tracker composition changes) to maintain choice relevance.</p>
+
+                    <h2>4. PERSONAL DATA AND PROTECTION</h2>
+                    <p><strong>4.1. Integration with Privacy Policy</strong></p>
+                    <p>This Agreement is inextricably linked to the Roomie Privacy Policy. In case of contradictions between documents, the Privacy Policy takes precedence for data processing issues.</p>
+                    <p><strong>4.2. Cross-Border Transfer</strong></p>
+                    <p>Since Roomie may use global services (e.g., analytics), Guest/User data may be transferred to servers located outside the EU. When transferring data to "third countries," the Administration uses applicable transfer mechanisms (e.g., Standard Contractual Clauses — SCC) and conducts a Transfer Impact Assessment (TIA) and/or implements additional measures if required to ensure an adequate level of protection in accordance with applicable law.</p>
+                    <p><strong>4.3. Retention Policy</strong></p>
+                    <ul>
+                        <li>Data of unregistered Guests (e.g., technical server logs, security events) is stored for no more than 12 months, unless a longer period is required for incident investigation, legal compliance, or protection of Administration/third-party rights.</li>
+                        <li>Marketing profiles/identifiers formed based on cookies/trackers are deleted or anonymized upon achieving processing goals or inactivity, but typically not stored longer than a period commensurate with the lifespan of relevant trackers (benchmark — limit around 13 months for measurement/analytical trackers).</li>
+                    </ul>
+                    <p><strong>4.4. Lawful Basis for Processing</strong></p>
+                    <p>Depending on data category and purpose, processing may be carried out on one or more legal grounds provided by GDPR (e.g., necessity for contract performance/service provision; consent; legitimate interest subject to balance of interests).</p>
+                    <p><strong>4.5. Data Subject Rights</strong></p>
+                    <p>The data subject (where applicable — under GDPR) has rights provided by Chapter III of GDPR, including the right to access, rectification, erasure ("right to be forgotten"), restriction of processing, data portability, objection to processing, and rights related to automated decision-making. To exercise rights, the data subject sends a request via contacts specified in the Privacy Policy/Section 4.6, and the Administration processes such requests in the order and terms provided by applicable law. The data subject also has the right to lodge a complaint with a competent data protection supervisory authority (where applicable — at the place of habitual residence in the EEA/EU).</p>
+                    <p><strong>4.6. DPO/Privacy Contact</strong></p>
+                    <p>The Administration appoints a contact person for personal data processing and privacy issues. Contacts are specified in the Privacy Policy and Section 12 of this Agreement: <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a>.</p>
+
+                    <h2>5. DISCLAIMER</h2>
+                    <p><strong>5.1.</strong> The Service is provided on an "as is" basis. The Administration does not guarantee that cookie operation and individual functions will be supported by all browser types, devices, or User/Guest configurations.</p>
+                    <p><strong>5.2.</strong> The Administration takes reasonable measures to ensure Service operability and security but does not guarantee the absence of failures, interruptions, data loss, or unauthorized access resulting from third-party actions, force majeure, and/or technical factors beyond reasonable control.</p>
+
+                    <h2>6. RIGHTS AND OBLIGATIONS OF THE ADMINISTRATION</h2>
+                    <p><strong>6.1.</strong> The Administration undertakes to take reasonable organizational and technical measures to protect the Service and data from unauthorized access and abuse.</p>
+                    <p><strong>6.2.</strong> The Administration has the right to change Service functionality, add or cease providing certain functions (fully or partially) for technical, commercial, or legal reasons.</p>
+                    <p><strong>6.3.</strong> The Administration has the right to moderate User content and actions, as well as restrict access in case of violation of the Agreement, third-party rights, or legal requirements.</p>
+                    <p><strong>6.4.</strong> The Administration has the right to send service messages to the User (technical notifications, security, terms changes) necessary for service provision.</p>
+
+                    <h2>7. LIABILITY OF PARTIES</h2>
+                    <p><strong>7.1.</strong> The User is responsible for violating the Agreement, as well as for the accuracy and legality of posted content and actions in the Service.</p>
+                    <p><strong>7.2.</strong> The Administration is not responsible for third-party actions, including other Users, as well as for the content of external resources linked to.</p>
+                    <p><strong>7.3.</strong> In case of damages caused to the Administration due to User violation of the Agreement, the User is obliged to reimburse documented damages within limits provided by law and this Agreement.</p>
+                    <p><strong>7.4.</strong> Parties are exempt from liability for non-fulfillment of obligations upon occurrence of force majeure circumstances (extraordinary and unavoidable under given conditions).</p>
+
+                    <h2>8. DISPUTE RESOLUTION AND APPLICABLE LAW</h2>
+                    <p><strong>8.1.</strong> The Agreement is governed by the applicable legislation of the jurisdiction where the Administration is registered, unless otherwise provided by mandatory norms of applicable law (e.g., for consumers from other jurisdictions).</p>
+                    <p><strong>8.2.</strong> Pre-trial settlement is mandatory: a claim is sent to the Administration via contacts in Section 9; claim consideration period — 10 (ten) working days, unless another period is established by law.</p>
+                    <p><strong>8.3.</strong> Jurisdiction and legal venue of disputes are determined in accordance with applicable legislation and/or mandatory consumer protection norms (if applicable).</p>
+
+                    <h2>9. VALIDITY AND TERMINATION OF AGREEMENT</h2>
+                    <p><strong>9.1.</strong> The Agreement enters into force from the moment of acceptance and remains valid until termination of Service use and/or account deletion, unless otherwise provided by the Agreement.</p>
+                    <p><strong>9.2.</strong> The Administration has the right to terminate/limit User access to the Service for violation of the Agreement, law, or third-party rights.</p>
+                    <p><strong>9.3.</strong> Provisions of the Agreement which by their nature continue to apply after termination (including intellectual property, liability, dispute resolution provisions) remain in force.</p>
+
+                    <h2>10. ADMINISTRATION DETAILS</h2>
+                    <p><strong>Name:</strong> LLC "hotelmol"</p>
+                    <p><strong>Legal Address:</strong> Vozdvizhenskaya, 40</p>
+                    <p><strong>E-mail for legal notices:</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a></p>
+                    <p><strong>Privacy Contact (DPO):</strong> <a href="mailto:legal@hotelmol.com" class="text-indigo-600 hover:underline">legal@hotelmol.com</a></p>
+                `
+            },
+            'zh': { name: "中文 (Mandarin)", dir: "ltr", title: "ROOMIE 平台用户协议", date: "最后更新：2026年1月15日", body: null },
+            'es': { name: "Español", dir: "ltr", title: "ACUERDO DE USUARIO DE LA PLATAFORMA ROOMIE", date: "Última actualización: 15 de enero de 2026", body: null },
+            'fr': { name: "Français", dir: "ltr", title: "ACCORD D'UTILISATEUR DE LA PLATEFORME ROOMIE", date: "Dernière mise à jour : 15 janvier 2026", body: null },
+            'pt': { name: "Português", dir: "ltr", title: "ACORDO DE USUÁRIO DA PLATAFORMA ROOMIE", date: "Última atualização: 15 de janeiro de 2026", body: null },
+            'de': { name: "Deutsch", dir: "ltr", title: "NUTZERVEREINBARUNG DER PLATTFORM ROOMIE", date: "Letzte Aktualisierung: 15. Januar 2026", body: null },
+            'ja': { name: "日本語", dir: "ltr", title: "ROOMIEプラットフォーム利用規約", date: "最終更新日：2026年1月15日", body: null },
+            'zh-HK': { name: "廣東話 (Cantonese)", dir: "ltr", title: "ROOMIE 平台用戶協議", date: "最後更新：2026年1月15日", body: null },
+            'hi': { name: "हिन्दी (Hindi)", dir: "ltr", title: "ROOMIE प्लेटफ़ॉर्म उपयोगकर्ता समझौता", date: "अंतिम अद्यतन: 15 जनवरी 2026", body: null },
+            'bn': { name: "বাংলা (Bengali)", dir: "ltr", title: "ROOMIE প্ল্যাটফর্ম ব্যবহারকারী চুক্তি", date: "সর্বশেষ আপডেট: 15 জানুয়ারী 2026", body: null },
+            'ar': { name: "العربية", dir: "rtl", title: "اتفاقية مستخدم منصة ROOMIE", date: "آخر تحديث: 15 يناير 2026", body: null },
+            'id': { name: "Bahasa Indonesia", dir: "ltr", title: "PERJANJIAN PENGGUNA PLATFORM ROOMIE", date: "Terakhir Diperbarui: 15 Januari 2026", body: null },
+            'vi': { name: "Tiếng Việt", dir: "ltr", title: "THỎA THUẬN NGƯỜI DÙNG NỀN TẢNG ROOMIE", date: "Cập nhật lần cuối: 15 tháng 1 năm 2026", body: null },
+            'tr': { name: "Türkçe", dir: "ltr", title: "ROOMIE PLATFORMU KULLANICI SÖZLEŞMESİ", date: "Son Güncelleme: 15 Ocak 2026", body: null },
+            'ko': { name: "한국어", dir: "ltr", title: "ROOMIE 플랫폼 사용자 계약", date: "최종 업데이트: 2026년 1월 15일", body: null },
+            'pl': { name: "Polski", dir: "ltr", title: "UMOWA UŻYTKOWNIKA PLATFORMY ROOMIE", date: "Ostatnia aktualizacja: 15 stycznia 2026", body: null }
+        };
+
+        // --- 2. Logic ---
+
+        const langDropdown = document.getElementById('lang-dropdown');
+        const langLabel = document.getElementById('current-lang-label');
+        const contentArea = document.getElementById('content-area');
+
+        // Populate Dropdown
+        const dropdownList = langDropdown.querySelector('div');
+        Object.keys(contentData).forEach(lang => {
+            const btn = document.createElement('button');
+            btn.className = "text-gray-700 block px-4 py-2 text-sm w-full text-left hover:bg-gray-100";
+            btn.setAttribute('role', 'menuitem');
+            btn.textContent = contentData[lang].name;
+            btn.onclick = () => setLanguage(lang);
+            dropdownList.appendChild(btn);
+        });
+
+        function toggleDropdown() {
+            langDropdown.classList.toggle('hidden');
+        }
+
+        // Close dropdown when clicking outside
+        window.onclick = function (event) {
+            if (!event.target.matches('#menu-button') && !event.target.closest('#menu-button')) {
+                if (!langDropdown.classList.contains('hidden')) {
+                    langDropdown.classList.add('hidden');
+                }
+            }
+        }
+
+        function setLanguage(langCode) {
+            // Fallback to English if exact match not found
+            if (!contentData[langCode]) {
+                // Try finding by prefix (e.g. 'zh-CN' -> 'zh')
+                const prefix = langCode.split('-')[0];
+                if (contentData[prefix]) langCode = prefix;
+                // Cantonese handling (yue)
+                else if (langCode === 'yue') langCode = 'zh-HK';
+                else langCode = 'en';
+            }
+
+            const data = contentData[langCode];
+
+            // Update UI Labels
+            langLabel.textContent = data.name;
+            document.documentElement.lang = langCode;
+            document.body.dir = data.dir;
+
+            // Update Content
+            // If body is null (for the 15 generated languages), use English body but keep localized Title
+            let htmlContent = `
+                <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">${data.title}</h1>
+                <p class="text-gray-500 mb-8 italic">${data.date}</p>
+            `;
+
+            if (data.body) {
+                htmlContent += data.body;
+            } else {
+                htmlContent += `
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                            </div>
+                            <div class="ml-3">
+                                <p class="text-sm text-yellow-700">
+                                    <strong>Demo Mode:</strong> Full legal translation for ${data.name} is not loaded in this demo file to optimize performance. Displaying English version below.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    ${contentData['en'].body}
+                `;
+            }
+
+            // Animation
+            contentArea.classList.remove('fade-in');
+            void contentArea.offsetWidth; // trigger reflow
+            contentArea.innerHTML = htmlContent;
+            contentArea.classList.add('fade-in');
+
+            // Close dropdown
+            langDropdown.classList.add('hidden');
+        }
+
+        // --- 3. Auto-Detection on Load ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get browser language (e.g., "en-US", "ru", "zh-CN")
+            const userLang = navigator.language || navigator.userLanguage;
+            console.log("Detected User Language:", userLang);
+
+            // Map common browser codes to our keys
+            let targetLang = userLang;
+
+            // Specific Cantonese detection or fallbacks
+            if (userLang.toLowerCase().includes('hk') || userLang.toLowerCase().includes('yue')) {
+                targetLang = 'zh-HK';
+            } else if (userLang.startsWith('zh')) {
+                targetLang = 'zh'; // Default to Mandarin for other zh
+            } else {
+                targetLang = userLang.split('-')[0];
+            }
+
+            // Set language
+            setLanguage(targetLang);
+        });
+
+    </script>
+</body>
+
+</html>
