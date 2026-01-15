@@ -77,13 +77,15 @@
     <div class="lang-switcher">
         <div class="relative inline-block text-left">
             <div>
-                <button type="button" onclick="toggleDropdown()" class="group inline-flex justify-center w-full rounded-full border border-gray-200 shadow-lg shadow-indigo-500/10 px-4 py-3 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 focus:outline-none transition-all duration-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                <!-- Added event parameter to toggleDropdown to manage propagation if needed, though simple click is fine -->
+                <button type="button" onclick="toggleDropdown(event)" class="group inline-flex justify-center w-full rounded-full border border-gray-200 shadow-lg shadow-indigo-500/10 px-4 py-3 bg-white text-sm font-semibold text-gray-700 hover:bg-gray-50 hover:text-indigo-600 focus:outline-none transition-all duration-200" id="menu-button" aria-expanded="true" aria-haspopup="true">
                     <i class="fas fa-globe mr-2 text-indigo-500 group-hover:rotate-12 transition-transform"></i>
                     <span id="current-lang-label">Русский</span>
                     <i class="fas fa-chevron-down ml-2 -mr-1 h-4 w-4 opacity-50"></i>
                 </button>
             </div>
-            <div id="lang-dropdown" class="hidden origin-top-right absolute right-0 bottom-14 lg:bottom-auto lg:top-12 mt-2 w-56 rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto transform transition-all duration-200" role="menu">
+            <!-- Removed complex transition classes that were causing issues when toggled -->
+            <div id="lang-dropdown" class="hidden origin-top-right absolute right-0 bottom-14 lg:bottom-auto lg:top-12 mt-2 w-56 rounded-xl shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto" role="menu">
                 <div class="py-2" role="none">
                     <!-- Languages injected by JS -->
                 </div>
@@ -282,15 +284,20 @@
             // Generated placehoder languages
             'zh': { name: "中文 (Mandarin)", dir: "ltr", title: "用户协议", subtitle: "ROOMIE 平台", date: "2026年1月15日", body: null },
             'es': { name: "Español", dir: "ltr", title: "ACUERDO DE USUARIO", subtitle: "PLATAFORMA ROOMIE", date: "15 de enero de 2026", body: null },
+            'fr': { name: "Français", dir: "ltr", title: "ACCORD D'UTILISATEUR", subtitle: "PLATEFORME ROOMIE", date: "15 janvier 2026", body: null },
+            'pt': { name: "Português", dir: "ltr", title: "ACORDO DE USUÁRIO", subtitle: "PLATAFORMA ROOMIE", date: "15 de janeiro de 2026", body: null },
+            'de': { name: "Deutsch", dir: "ltr", title: "NUTZERVEREINBARUNG", subtitle: "PLATTFORM ROOMIE", date: "15. Januar 2026", body: null },
+            'ja': { name: "日本語", dir: "ltr", title: "ユーザー契約", subtitle: "ROOMIEプラットフォーム", date: "2026年1月15日", body: null },
+            'zh-HK': { name: "廣東話 (Cantonese)", dir: "ltr", title: "用戶協議", subtitle: "ROOMIE 平台", date: "2026年1月15日", body: null },
+            'hi': { name: "हिन्दी (Hindi)", dir: "ltr", title: "उपयोगकर्ता समझौता", subtitle: "ROOMIE प्लेटफ़ॉर्म", date: "15 जनवरी 2026", body: null },
+            'bn': { name: "বাংলা (Bengali)", dir: "ltr", title: "ব্যবহারকারী চুক্তি", subtitle: "ROOMIE প্ল্যাটফর্ম", date: "15 জানুয়ারী 2026", body: null },
             'ar': { name: "العربية", dir: "rtl", title: "اتفاقية المستخدم", subtitle: "منصة ROOMIE", date: "15 يناير 2026", body: null },
-            // ... (Other languages follow the same pattern, abbreviated for this code block to fit limits)
+            'id': { name: "Bahasa Indonesia", dir: "ltr", title: "PERJANJIAN PENGGUNA", subtitle: "PLATFORM ROOMIE", date: "15 Januari 2026", body: null },
+            'vi': { name: "Tiếng Việt", dir: "ltr", title: "THỎA THUẬN NGƯỜI DÙNG", subtitle: "NỀN TẢNG ROOMIE", date: "15 tháng 1 năm 2026", body: null },
+            'tr': { name: "Türkçe", dir: "ltr", title: "KULLANICI SÖZLEŞMESİ", subtitle: "ROOMIE PLATFORMU", date: "15 Ocak 2026", body: null },
+            'ko': { name: "한국어", dir: "ltr", title: "사용자 계약", subtitle: "ROOMIE 플랫폼", date: "2026년 1월 15일", body: null },
+            'pl': { name: "Polski", dir: "ltr", title: "UMOWA UŻYTKOWNIKA", subtitle: "PLATFORMA ROOMIE", date: "15 stycznia 2026", body: null }
         };
-        
-        // Add more placeholders for demo (reuse En logic)
-        ['fr', 'pt', 'de', 'ja', 'tr'].forEach(lang => {
-            if(!contentData[lang]) contentData[lang] = { name: lang.toUpperCase(), dir: 'ltr', title: "USER AGREEMENT", subtitle: "ROOMIE", date: "2026", body: null };
-        });
-
 
         // --- 2. Logic & Rendering ---
 
@@ -310,15 +317,17 @@
             dropdownList.appendChild(btn);
         });
 
-        function toggleDropdown() {
+        function toggleDropdown(event) {
+            if (event) event.stopPropagation();
             langDropdown.classList.toggle('hidden');
-            langDropdown.classList.toggle('opacity-0');
-            langDropdown.classList.toggle('scale-95');
         }
 
         window.onclick = function(event) {
-            if (!event.target.closest('#menu-button')) {
-                langDropdown.classList.add('hidden');
+            // Updated to be more robust: close if clicking anywhere except inside the button or dropdown itself
+            if (!event.target.closest('#menu-button') && !event.target.closest('#lang-dropdown')) {
+                if (!langDropdown.classList.contains('hidden')) {
+                    langDropdown.classList.add('hidden');
+                }
             }
         }
 
