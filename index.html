@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ru">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roomie - User Agreement</title>
+    <!-- Favicon: Document Icon in Indigo color -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cline x1='10' y1='9' x2='8' y2='9'%3E%3C/line%3E%3C/svg%3E">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -12,18 +13,15 @@
         ::-webkit-scrollbar {
             width: 8px;
         }
-
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f1f1f1; 
         }
-
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+            background: #cbd5e1; 
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+            background: #94a3b8; 
         }
 
         /* Language Switcher Positioning */
@@ -54,28 +52,19 @@
         .fade-in {
             animation: fadeIn 0.5s ease-in-out;
         }
-
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-
 <body class="bg-white text-gray-800 antialiased min-h-screen flex flex-col">
 
     <!-- Language Switcher Component -->
     <div class="lang-switcher">
         <div class="relative inline-block text-left">
             <div>
-                <button type="button" onclick="toggleDropdown()"
-                    class="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    id="menu-button" aria-expanded="true" aria-haspopup="true">
+                <button type="button" onclick="toggleDropdown()" class="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm px-4 py-3 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
                     <i class="fas fa-globe mr-2 text-indigo-600"></i>
                     <span id="current-lang-label">Русский</span>
                     <i class="fas fa-chevron-down ml-2 -mr-1 h-4 w-4"></i>
@@ -83,9 +72,7 @@
             </div>
 
             <!-- Dropdown menu -->
-            <div id="lang-dropdown"
-                class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto"
-                role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div id="lang-dropdown" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none max-h-80 overflow-y-auto" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
                 <div class="py-1" role="none">
                     <!-- Languages will be injected here by JS -->
                 </div>
@@ -114,7 +101,7 @@
         // --- 1. Data Source (The Content) ---
         // Note: Full text provided for Russian and English. 
         // Other languages have translated headers/titles to demonstrate logic, with English body fallback for brevity in this file.
-
+        
         const contentData = {
             'ru': {
                 name: "Русский",
@@ -323,7 +310,7 @@
         }
 
         // Close dropdown when clicking outside
-        window.onclick = function (event) {
+        window.onclick = function(event) {
             if (!event.target.matches('#menu-button') && !event.target.closest('#menu-button')) {
                 if (!langDropdown.classList.contains('hidden')) {
                     langDropdown.classList.add('hidden');
@@ -343,7 +330,7 @@
             }
 
             const data = contentData[langCode];
-
+            
             // Update UI Labels
             langLabel.textContent = data.name;
             document.documentElement.lang = langCode;
@@ -389,12 +376,12 @@
         // --- 3. Auto-Detection on Load ---
         document.addEventListener('DOMContentLoaded', () => {
             // Get browser language (e.g., "en-US", "ru", "zh-CN")
-            const userLang = navigator.language || navigator.userLanguage;
+            const userLang = navigator.language || navigator.userLanguage; 
             console.log("Detected User Language:", userLang);
-
+            
             // Map common browser codes to our keys
             let targetLang = userLang;
-
+            
             // Specific Cantonese detection or fallbacks
             if (userLang.toLowerCase().includes('hk') || userLang.toLowerCase().includes('yue')) {
                 targetLang = 'zh-HK';
@@ -410,5 +397,4 @@
 
     </script>
 </body>
-
 </html>
