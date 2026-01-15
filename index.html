@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roomie - Пользовательское соглашение</title>
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%234f46e5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cline x1='10' y1='9' x2='8' y2='9'%3E%3C/line%3E%3C/svg%3E">
+    <!-- Favicon: Updated to Blue (#2563eb) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'%3E%3C/path%3E%3Cpolyline points='14 2 14 8 20 8'%3E%3C/polyline%3E%3Cline x1='16' y1='13' x2='8' y2='13'%3E%3C/line%3E%3Cline x1='16' y1='17' x2='8' y2='17'%3E%3C/line%3E%3Cline x1='10' y1='9' x2='8' y2='9'%3E%3C/line%3E%3C/svg%3E">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -20,71 +20,82 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* Google Translate Customization */
+        /* --- STYLING THE GOOGLE WIDGET (AGGRESSIVE) --- */
+        
+        /* 1. The Container (The actual visible button) */
         .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
-            transition: all 0.3s ease;
+            background-color: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 9999px; /* Pill shape */
+            padding: 8px 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .lang-switcher-wrapper:hover {
+            border-color: #6366f1; /* Indigo-500 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-1px);
         }
 
-        /* Desktop: Top Right */
+        /* 2. Positioning the container */
         @media (min-width: 1024px) {
             .lang-switcher-wrapper { top: 1.5rem; right: 2rem; }
         }
-
-        /* Mobile: Bottom Right */
         @media (max-width: 1023px) {
             .lang-switcher-wrapper { bottom: 1.5rem; right: 1.5rem; top: auto; }
         }
 
-        /* Hide Google Bar Top Frame */
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0px !important; }
-
-        /* Custom styling for the Google Widget container to look like a button */
-        #google_translate_element {
-            display: inline-block;
+        /* 3. The Icon (My custom icon) */
+        .custom-globe-icon {
+            color: #4f46e5; /* Indigo-600 */
+            font-size: 16px;
         }
-        
-        .goog-te-gadget-simple {
-            background-color: #fff !important;
-            border: 1px solid #e5e7eb !important;
-            padding: 8px 16px !important;
-            border-radius: 9999px !important;
+
+        /* 4. OVERRIDING GOOGLE STYLES */
+        /* Target the Google element specifically with high specificity */
+        #google_translate_element .goog-te-gadget-simple {
+            background-color: transparent !important;
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
             font-size: 14px !important;
-            line-height: 20px !important;
-            display: inline-block;
-            cursor: pointer;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
-            transition: all 0.2s;
-        }
-        
-        .goog-te-gadget-simple:hover {
-            background-color: #f9fafb !important;
-            color: #4f46e5 !important;
-        }
-
-        .goog-te-menu-value {
-            color: #374151 !important;
+            line-height: 1.5 !important;
             font-family: 'Inter', sans-serif !important;
-            font-weight: 500 !important;
-        }
-        
-        .goog-te-menu-value span {
             color: #374151 !important;
-        }
-        
-        .goog-te-menu-value span:first-child {
-            /* This targets the language name */
-            border-left: none !important;
+            cursor: pointer !important;
         }
 
-        /* Hide the 'Powered by Google' icon if desired for cleaner look, 
-           though Google TOS usually requires some attribution. 
-           We'll keep it minimal. */
-        .goog-te-gadget-icon {
+        /* Hide Google's own icon */
+        #google_translate_element .goog-te-gadget-icon {
             display: none !important;
         }
+
+        /* Style the text inside Google widget */
+        #google_translate_element .goog-te-menu-value {
+            margin: 0 !important;
+            color: #374151 !important;
+        }
+        
+        #google_translate_element .goog-te-menu-value span {
+            color: #374151 !important;
+            border: none !important;
+        }
+
+        /* Hide the dropdown arrow image from Google if possible, relies on text mostly */
+        #google_translate_element .goog-te-menu-value img {
+            display: none !important;
+        }
+        
+        /* Hide Top Banner Frame */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
 
         /* TOC Active State */
         .toc-active {
@@ -97,9 +108,11 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Language Switcher (Google Widget Container) -->
+    <!-- Language Switcher: Custom Wrapper around Google Widget -->
     <div class="lang-switcher-wrapper">
+        <i class="fas fa-globe custom-globe-icon"></i>
         <div id="google_translate_element"></div>
+        <i class="fas fa-chevron-down text-gray-400 text-xs ml-1"></i>
     </div>
 
     <!-- Main Layout -->
