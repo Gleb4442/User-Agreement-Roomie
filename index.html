@@ -20,22 +20,30 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* --- STYLING THE GOOGLE WIDGET (AGGRESSIVE) --- */
+        /* --- STYLING THE GOOGLE WIDGET (Strict One-Line Capsule) --- */
         
-        /* 1. The Container (The actual visible button) */
+        /* 1. The Container (The visible button) */
         .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
             background-color: white;
             border: 1px solid #e5e7eb;
-            border-radius: 9999px; /* Pill shape */
-            padding: 8px 16px;
+            /* Full pill shape */
+            border-radius: 9999px; 
+            padding: 6px 14px; /* Compact padding */
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            
+            /* Flexbox Magic for 1 Row */
             display: flex;
+            flex-direction: row;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 6px;
+            white-space: nowrap; /* Forces single line */
+            
             cursor: pointer;
             transition: all 0.2s ease;
+            max-width: 200px; /* Prevent it from getting too wide */
         }
         
         .lang-switcher-wrapper:hover {
@@ -44,7 +52,7 @@
             transform: translateY(-1px);
         }
 
-        /* 2. Positioning the container */
+        /* 2. Positioning */
         @media (min-width: 1024px) {
             .lang-switcher-wrapper { top: 1.5rem; right: 2rem; }
         }
@@ -52,14 +60,21 @@
             .lang-switcher-wrapper { bottom: 1.5rem; right: 1.5rem; top: auto; }
         }
 
-        /* 3. The Icon (My custom icon) */
+        /* 3. The Icon */
         .custom-globe-icon {
-            color: #4f46e5; /* Indigo-600 */
-            font-size: 16px;
+            color: #4f46e5;
+            font-size: 15px;
+            flex-shrink: 0;
         }
 
-        /* 4. OVERRIDING GOOGLE STYLES */
-        /* Target the Google element specifically with high specificity */
+        /* 4. GOOGLE WIDGET OVERRIDES (The Engine Room) */
+        /* Make the google container inline-flex */
+        #google_translate_element {
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+
+        /* Target the gadget itself */
         #google_translate_element .goog-te-gadget-simple {
             background-color: transparent !important;
             border: none !important;
@@ -70,30 +85,32 @@
             font-family: 'Inter', sans-serif !important;
             color: #374151 !important;
             cursor: pointer !important;
+            display: inline-flex !important; /* Force flex */
+            align-items: center !important;
         }
 
-        /* Hide Google's own icon */
-        #google_translate_element .goog-te-gadget-icon {
-            display: none !important;
-        }
+        /* Hide Google junk */
+        #google_translate_element .goog-te-gadget-icon { display: none !important; }
+        #google_translate_element .goog-te-menu-value img { display: none !important; }
 
-        /* Style the text inside Google widget */
+        /* Force text inside Google widget to be 1 line */
         #google_translate_element .goog-te-menu-value {
             margin: 0 !important;
             color: #374151 !important;
+            display: flex !important;
+            align-items: center !important;
+            white-space: nowrap !important;
         }
         
         #google_translate_element .goog-te-menu-value span {
             color: #374151 !important;
             border: none !important;
-        }
-
-        /* Hide the dropdown arrow image from Google if possible, relies on text mostly */
-        #google_translate_element .goog-te-menu-value img {
-            display: none !important;
+            white-space: nowrap !important;
+            /* Sometimes Google adds a pipe | in a separate span, let's hide vertical borders */
+            border-left: none !important;
         }
         
-        /* Hide Top Banner Frame */
+        /* Hide Top Banner */
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
 
@@ -112,7 +129,7 @@
     <div class="lang-switcher-wrapper">
         <i class="fas fa-globe custom-globe-icon"></i>
         <div id="google_translate_element"></div>
-        <i class="fas fa-chevron-down text-gray-400 text-xs ml-1"></i>
+        <i class="fas fa-chevron-down text-gray-400 text-xs ml-1 flex-shrink-0"></i>
     </div>
 
     <!-- Main Layout -->
