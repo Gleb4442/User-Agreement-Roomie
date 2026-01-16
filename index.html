@@ -20,23 +20,31 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* --- GOOGLE TRANSLATE FIX (NUCLEAR OPTION) --- */
+        /* --- GOOGLE TRANSLATE FIX (ADAPTIVE CAPSULE) --- */
         
-        /* 1. Wrapper Position */
+        /* 1. Wrapper Position & Shape */
         .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
             background-color: white;
             border: 1px solid #e5e7eb;
-            border-radius: 9999px; 
-            padding: 6px 12px;
+            border-radius: 9999px; /* Pill shape */
+            
+            /* ADAPTIVE SIZING FIX */
+            padding: 8px 16px; /* Comfortable padding */
+            width: fit-content; /* Hug content tightly */
+            min-width: 120px; /* Minimum nice width */
+            max-width: 90vw; /* Prevent screen overflow on tiny mobiles */
+            
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            
+            /* Layout */
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
+            gap: 8px; /* Space between icon, text, arrow */
+            
             transition: all 0.2s ease;
-            height: 42px; /* Fixed height to prevent jumping */
-            min-width: 140px; /* Min width for stability */
         }
         
         .lang-switcher-wrapper:hover {
@@ -61,7 +69,8 @@
         #google_translate_element {
             display: flex !important;
             align-items: center !important;
-            height: 100%;
+            /* Allow width to grow */
+            width: auto !important; 
         }
 
         .goog-te-gadget-simple {
@@ -75,6 +84,8 @@
             display: flex !important;
             align-items: center !important;
             cursor: pointer !important;
+            /* Ensure text wraps or stays on line properly */
+            white-space: nowrap !important;
         }
 
         .goog-te-menu-value {
@@ -88,6 +99,10 @@
             color: #374151 !important;
             border: none !important;
             font-weight: 500 !important;
+            /* Fix overflow */
+            max-width: 150px; 
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* Hide the vertical pipe delimiter Google sometimes adds */
@@ -108,9 +123,9 @@
 
     <!-- Language Switcher -->
     <div class="lang-switcher-wrapper">
-        <i class="fas fa-globe text-blue-600 text-sm"></i> <!-- Icon fixed in wrapper -->
+        <i class="fas fa-globe text-blue-600 text-sm flex-shrink-0"></i> 
         <div id="google_translate_element"></div>
-        <i class="fas fa-chevron-down text-gray-400 text-xs ml-auto pointer-events-none"></i>
+        <i class="fas fa-chevron-down text-gray-400 text-xs flex-shrink-0"></i>
     </div>
 
     <!-- Main Layout -->
@@ -239,15 +254,6 @@
             </main>
         </div>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 mt-auto">
-        <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center">
-            <p class="text-gray-400 text-sm">
-                &copy; 2026 Roomie. All rights reserved.
-            </p>
-        </div>
-    </footer>
 
     <!-- Google Translate Scripts -->
     <script type="text/javascript">
