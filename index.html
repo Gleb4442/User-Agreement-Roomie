@@ -20,31 +20,32 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* --- GOOGLE TRANSLATE FIX (ADAPTIVE CAPSULE) --- */
+        /* --- GOOGLE TRANSLATE FIX (FINAL CAPSULE) --- */
         
-        /* 1. Wrapper Position & Shape */
+        /* 1. Wrapper: The pill shape */
         .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
             background-color: white;
             border: 1px solid #e5e7eb;
-            border-radius: 9999px; /* Pill shape */
-            
-            /* ADAPTIVE SIZING FIX */
-            padding: 8px 16px; /* Comfortable padding */
-            width: fit-content; /* Hug content tightly */
-            min-width: 120px; /* Minimum nice width */
-            max-width: 90vw; /* Prevent screen overflow on tiny mobiles */
-            
+            border-radius: 9999px; 
+            padding: 6px 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             
-            /* Layout */
+            /* Flex Layout */
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px; /* Space between icon, text, arrow */
+            justify-content: space-between; /* Space out icon and text */
+            gap: 8px;
+            
+            /* Sizing constraints */
+            height: 40px; 
+            max-width: 160px; /* Don't let it grow too wide */
+            width: auto;      /* But allow it to shrink if needed */
             
             transition: all 0.2s ease;
+            cursor: pointer;
+            overflow: hidden; /* Cut off anything sticking out */
         }
         
         .lang-switcher-wrapper:hover {
@@ -59,18 +60,18 @@
             .lang-switcher-wrapper { bottom: 1.5rem; right: 1.5rem; top: auto; }
         }
 
-        /* 2. Hide Google Junk Globally */
+        /* 2. Hide Google Junk */
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
         .goog-te-gadget-icon { display: none !important; }
         .goog-te-menu-value img { display: none !important; }
         
-        /* 3. Force One-Line Layout on Google Elements */
+        /* 3. Force Google Widget Layout */
         #google_translate_element {
             display: flex !important;
             align-items: center !important;
-            /* Allow width to grow */
-            width: auto !important; 
+            flex: 1; /* Take up remaining space */
+            min-width: 0; /* Crucial for text-overflow to work in flex */
         }
 
         .goog-te-gadget-simple {
@@ -84,35 +85,44 @@
             display: flex !important;
             align-items: center !important;
             cursor: pointer !important;
-            /* Ensure text wraps or stays on line properly */
-            white-space: nowrap !important;
+            width: 100% !important; /* Fill parent */
         }
 
+        /* 4. Text Truncation (The Fix) */
         .goog-te-menu-value {
             color: #374151 !important;
             margin: 0 !important;
-            display: flex !important;
-            align-items: center !important;
+            display: block !important; /* Needed for ellipsis */
+            width: 100% !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            text-align: left;
         }
 
         .goog-te-menu-value span {
             color: #374151 !important;
             border: none !important;
             font-weight: 500 !important;
-            /* Fix overflow */
-            max-width: 150px; 
-            overflow: hidden;
-            text-overflow: ellipsis;
+            /* Inherit truncation from parent */
         }
 
-        /* Hide the vertical pipe delimiter Google sometimes adds */
+        /* Hide the pipe | */
         .goog-te-menu-value span:nth-child(2) {
             display: none !important;
         }
 
+        /* Icons */
+        .custom-icon-left {
+            flex-shrink: 0; /* Never shrink */
+        }
+        .custom-icon-right {
+            flex-shrink: 0; /* Never shrink */
+        }
+
         /* TOC Active State */
         .toc-active {
-            color: #2563eb !important; /* Blue-600 */
+            color: #2563eb !important; 
             border-left-color: #2563eb !important;
             background-color: #eff6ff;
             font-weight: 600;
@@ -123,9 +133,9 @@
 
     <!-- Language Switcher -->
     <div class="lang-switcher-wrapper">
-        <i class="fas fa-globe text-blue-600 text-sm flex-shrink-0"></i> 
+        <i class="fas fa-globe text-blue-600 text-sm custom-icon-left"></i> 
         <div id="google_translate_element"></div>
-        <i class="fas fa-chevron-down text-gray-400 text-xs flex-shrink-0"></i>
+        <i class="fas fa-chevron-down text-gray-400 text-xs custom-icon-right"></i>
     </div>
 
     <!-- Main Layout -->
