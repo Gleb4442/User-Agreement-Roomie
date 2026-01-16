@@ -20,39 +20,41 @@
         ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
 
-        /* --- GOOGLE TRANSLATE FIX (FINAL CAPSULE) --- */
+        /* --- THE PHANTOM BUTTON TECHNIQUE --- */
         
-        /* 1. Wrapper: The pill shape */
+        /* 1. Main Container (Visible Shell) */
         .lang-switcher-wrapper {
             position: fixed;
             z-index: 50;
+            
+            /* Visual Styling */
             background-color: white;
             border: 1px solid #e5e7eb;
             border-radius: 9999px; 
-            padding: 6px 12px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             
-            /* Flex Layout */
+            /* Layout */
             display: flex;
             align-items: center;
-            justify-content: space-between; /* Space out icon and text */
-            gap: 8px;
-            
-            /* Sizing constraints */
-            height: 40px; 
-            max-width: 160px; /* Don't let it grow too wide */
-            width: auto;      /* But allow it to shrink if needed */
+            justify-content: center;
+            padding: 8px 16px;
             
             transition: all 0.2s ease;
             cursor: pointer;
-            overflow: hidden; /* Cut off anything sticking out */
+            
+            /* Size constraints */
+            height: 42px;
+            min-width: 120px;
+            max-width: 200px;
         }
         
         .lang-switcher-wrapper:hover {
             border-color: #2563eb;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
         }
 
+        /* Responsive Positioning */
         @media (min-width: 1024px) {
             .lang-switcher-wrapper { top: 1.5rem; right: 2rem; }
         }
@@ -60,65 +62,47 @@
             .lang-switcher-wrapper { bottom: 1.5rem; right: 1.5rem; top: auto; }
         }
 
-        /* 2. Hide Google Junk */
+        /* 2. Visual Layer (My Custom HTML Text - Crisp & Clear) */
+        .visual-content {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+            pointer-events: none; /* Let clicks pass through to Google */
+        }
+
+        .visual-lang-text {
+            font-size: 14px;
+            font-weight: 500;
+            color: #374151;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px; /* Limit text width */
+        }
+
+        /* 3. Invisible Functional Layer (Google Widget) */
+        #google_translate_element {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.0001; /* Invisible but clickable */
+            overflow: hidden;
+            z-index: 10;
+            cursor: pointer;
+        }
+        
+        /* Ensure Google's internal element fills our wrapper so clicks register */
+        .goog-te-gadget-simple {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Hide Top Banner */
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
-        .goog-te-gadget-icon { display: none !important; }
-        .goog-te-menu-value img { display: none !important; }
-        
-        /* 3. Force Google Widget Layout */
-        #google_translate_element {
-            display: flex !important;
-            align-items: center !important;
-            flex: 1; /* Take up remaining space */
-            min-width: 0; /* Crucial for text-overflow to work in flex */
-        }
-
-        .goog-te-gadget-simple {
-            background-color: transparent !important;
-            border: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-            font-size: 14px !important;
-            font-family: 'Inter', sans-serif !important;
-            color: #374151 !important;
-            display: flex !important;
-            align-items: center !important;
-            cursor: pointer !important;
-            width: 100% !important; /* Fill parent */
-        }
-
-        /* 4. Text Truncation (The Fix) */
-        .goog-te-menu-value {
-            color: #374151 !important;
-            margin: 0 !important;
-            display: block !important; /* Needed for ellipsis */
-            width: 100% !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
-            text-align: left;
-        }
-
-        .goog-te-menu-value span {
-            color: #374151 !important;
-            border: none !important;
-            font-weight: 500 !important;
-            /* Inherit truncation from parent */
-        }
-
-        /* Hide the pipe | */
-        .goog-te-menu-value span:nth-child(2) {
-            display: none !important;
-        }
-
-        /* Icons */
-        .custom-icon-left {
-            flex-shrink: 0; /* Never shrink */
-        }
-        .custom-icon-right {
-            flex-shrink: 0; /* Never shrink */
-        }
 
         /* TOC Active State */
         .toc-active {
@@ -131,11 +115,19 @@
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col">
 
-    <!-- Language Switcher -->
+    <!-- Language Switcher: Phantom Button -->
     <div class="lang-switcher-wrapper">
-        <i class="fas fa-globe text-blue-600 text-sm custom-icon-left"></i> 
+        
+        <!-- A. Visible Custom Layer (What user sees) -->
+        <div class="visual-content">
+            <i class="fas fa-globe text-blue-600 text-sm flex-shrink-0"></i>
+            <span id="custom-lang-text" class="visual-lang-text">Русский</span> <!-- Changes via JS -->
+            <i class="fas fa-chevron-down text-gray-400 text-xs flex-shrink-0 ml-auto"></i>
+        </div>
+
+        <!-- B. Invisible Functional Layer (What user clicks) -->
         <div id="google_translate_element"></div>
-        <i class="fas fa-chevron-down text-gray-400 text-xs custom-icon-right"></i>
+        
     </div>
 
     <!-- Main Layout -->
@@ -328,32 +320,43 @@
             }, { rootMargin: '-20% 0px -70% 0px' });
             document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-            // 4. "Nuclear" Google Styling Fixer (MutationObserver)
-            // This watches for Google modifying the DOM and cleans it up instantly
+            // 4. "Sync" Script for Phantom Button
+            // Watches the invisible Google widget and copies its text to our nice button
             const targetNode = document.getElementById('google_translate_element');
-            const config = { childList: true, subtree: true };
+            const customLangText = document.getElementById('custom-lang-text');
+            
+            const config = { childList: true, subtree: true, characterData: true };
 
             const callback = function(mutationsList, observer) {
-                for(const mutation of mutationsList) {
-                    if (mutation.type === 'childList') {
-                        // Find the text node inside Google's gadget
-                        const gadget = document.querySelector('.goog-te-gadget-simple');
-                        if (gadget) {
-                            // If it says "Select Language" (in any lang), remove it to keep button small
-                            // Or ensure specific spans are hidden
-                            const spans = gadget.getElementsByTagName('span');
-                            for (let i = 0; i < spans.length; i++) {
-                                // Google puts pipe | in a span, hide it
-                                if (spans[i].innerHTML.includes('|')) {
-                                    spans[i].style.display = 'none';
-                                }
-                            }
-                        }
+                // Try to find the text span in Google widget
+                const googleTextSpan = document.querySelector('.goog-te-menu-value span:first-child');
+                if (googleTextSpan && customLangText) {
+                    // Update our visible text with whatever Google says
+                    let newText = googleTextSpan.innerText || googleTextSpan.textContent;
+                    
+                    // Clean up "Select Language" if present, fallback to "Language" or current
+                    if (newText.includes('Select Language') || newText.includes('Выбрать язык')) {
+                        // Keep previous or set default if needed, or let it be
+                    } else {
+                        customLangText.textContent = newText;
                     }
                 }
             };
+            
+            // Observe modifications
             const googleObserver = new MutationObserver(callback);
             if (targetNode) googleObserver.observe(targetNode, config);
+            
+            // Also polling just in case observer misses the initial load
+            setInterval(() => {
+                 const googleTextSpan = document.querySelector('.goog-te-menu-value span:first-child');
+                 if (googleTextSpan && customLangText) {
+                     const text = googleTextSpan.innerText;
+                     if(text && text !== customLangText.textContent && !text.includes('Select')) {
+                         customLangText.textContent = text;
+                     }
+                 }
+            }, 1000);
         });
     </script>
 </body>
